@@ -1,0 +1,254 @@
+<!--
+
+CALCULATOR METHODOLOGY SECTIONS - TO BE ADDED TO calculators.html
+
+Add these sections after each calculator's disclaimer card within each calc-panel.
+
+These provide transparency about formulas, assumptions, and limitations.
+
+-->
+
+<!-- ================================================================================= -->
+<!-- SECTION 1: NET WORTH CALCULATOR METHODOLOGY -->
+<!-- Add after line ~217 (after nw-summary-card section) -->
+<!-- ================================================================================= -->
+
+<div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--border-light);">
+  <h3 style="font-family: var(--font-serif); font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-primary);">
+    How This Calculation Works
+  </h3>
+  
+  <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 4px; border-left: 4px solid var(--gold-primary); margin-bottom: 1.5rem;">
+    <h4 style="font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">Formula:</h4>
+    <code style="background: var(--bg-primary); padding: 1rem; display: block; border-radius: 3px; font-size: 0.9rem; color: var(--text-secondary); overflow-x: auto;">
+      Net Worth = Total Assets - Total Liabilities
+    </code>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
+    <div>
+      <h4 style="font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">✓ What This Includes:</h4>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 0.5rem;">• Liquid assets (cash, investments)</li>
+        <li style="margin-bottom: 0.5rem;">• Long-term assets (real estate, business)</li>
+        <li style="margin-bottom: 0.5rem;">• Retirement accounts (at current balance)</li>
+        <li style="margin-bottom: 0.5rem;">• All outstanding debts</li>
+        <li style="margin-bottom: 0.5rem;">• Debt-to-equity ratio visualization</li>
+      </ul>
+    </div>
+    
+    <div>
+      <h4 style="font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">⚠ What This Does NOT Include:</h4>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 0.5rem;">• Future capital gains tax liability</li>
+        <li style="margin-bottom: 0.5rem;">• Valuation adjustments for illiquid assets</li>
+        <li style="margin-bottom: 0.5rem;">• Tax basis differences</li>
+        <li style="margin-bottom: 0.5rem;">• Unfunded pension liabilities</li>
+        <li style="margin-bottom: 0.5rem;">• Contingent liabilities</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="background: #FEF3E2; border-left: 4px solid #B8975A; padding: 1rem; border-radius: 3px; font-size: 0.9rem; color: var(--text-secondary);">
+    <strong>Important:</strong> This calculation uses market values as entered. For a professional net worth analysis, have valuations professionally appraised and consider tax implications with a CPA.
+  </div>
+</div>
+
+
+<!-- ================================================================================= -->
+<!-- SECTION 2: SAVINGS CALCULATOR METHODOLOGY -->
+<!-- Add after line ~296 (after sav-res-interest section) -->
+<!-- ================================================================================= -->
+
+<div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--border-light);">
+  <h3 style="font-family: var(--font-serif); font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-primary);">
+    How This Calculation Works
+  </h3>
+  
+  <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 4px; border-left: 4px solid var(--gold-primary); margin-bottom: 1.5rem;">
+    <h4 style="font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">Formula (Future Value of Annuity):</h4>
+    <code style="background: var(--bg-primary); padding: 1rem; display: block; border-radius: 3px; font-size: 0.85rem; color: var(--text-secondary); overflow-x: auto; line-height: 1.6;">
+      FV = PV(1+r)ⁿ + PMT × [((1+r)ⁿ - 1) / r]<br>
+      Where: PV = current savings, r = monthly rate, n = months, PMT = monthly contribution
+    </code>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
+    <div>
+      <h4 style="font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">✓ Assumptions Made:</h4>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 0.5rem;">• Consistent monthly contributions</li>
+        <li style="margin-bottom: 0.5rem;">• Monthly compounding</li>
+        <li style="margin-bottom: 0.5rem;">• Steady return rate (no volatility)</li>
+        <li style="margin-bottom: 0.5rem;">• No contributions missed</li>
+        <li style="margin-bottom: 0.5rem;">• No withdrawals until target date</li>
+      </ul>
+    </div>
+    
+    <div>
+      <h4 style="font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">⚠ What This Does NOT Include:</h4>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 0.5rem;">• Income taxes on interest earned</li>
+        <li style="margin-bottom: 0.5rem;">• Bank fees or account charges</li>
+        <li style="margin-bottom: 0.5rem;">• Life changes (job loss, emergencies)</li>
+        <li style="margin-bottom: 0.5rem;">• Inflation impact on purchasing power</li>
+        <li style="margin-bottom: 0.5rem;">• Market downturns or volatility</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="background: #FEF3E2; border-left: 4px solid #B8975A; padding: 1rem; border-radius: 3px; font-size: 0.9rem; color: var(--text-secondary);">
+    <strong>Reality Check:</strong> Actual savings often differs due to missed contributions, unexpected expenses, or market changes. Build in a safety margin—target 10-15% higher than calculated to account for real-world variability.
+  </div>
+</div>
+
+
+<!-- ================================================================================= -->
+<!-- SECTION 3: COMPOUND GROWTH METHODOLOGY -->
+<!-- Add after line ~347 (after cg-res-growth section) -->
+<!-- ================================================================================= -->
+
+<div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--border-light);">
+  <h3 style="font-family: var(--font-serif); font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-primary);">
+    How This Calculation Works
+  </h3>
+  
+  <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 4px; border-left: 4px solid var(--gold-primary); margin-bottom: 1.5rem;">
+    <h4 style="font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">Formula (Compound Interest with Regular Contributions):</h4>
+    <code style="background: var(--bg-primary); padding: 1rem; display: block; border-radius: 3px; font-size: 0.85rem; color: var(--text-secondary); overflow-x: auto; line-height: 1.6;">
+      FV = P(1+r)ⁿ + PMT × [((1+r)ⁿ - 1) / r]<br>
+      Compounding: Monthly (12 times per year)<br>
+      r = annual rate ÷ 12
+    </code>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
+    <div>
+      <h4 style="font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">✓ Key Features:</h4>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 0.5rem;">• Visualizes growth over time</li>
+        <li style="margin-bottom: 0.5rem;">• Shows contribution vs. growth breakdown</li>
+        <li style="margin-bottom: 0.5rem;">• Adjustable return assumptions</li>
+        <li style="margin-bottom: 0.5rem;">• Interactive time horizon (1-40 years)</li>
+        <li style="margin-bottom: 0.5rem;">• Demonstrates power of compound growth</li>
+      </ul>
+    </div>
+    
+    <div>
+      <h4 style="font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">⚠ What This Does NOT Show:</h4>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 0.5rem;">• Market volatility or downturns</li>
+        <li style="margin-bottom: 0.5rem;">• Investment fees or expenses</li>
+        <li style="margin-bottom: 0.5rem;">• Taxes on dividends/gains</li>
+        <li style="margin-bottom: 0.5rem;">• Inflation impact on purchasing power</li>
+        <li style="margin-bottom: 0.5rem;">• Actual year-by-year returns (smooth line)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="background: #FEF3E2; border-left: 4px solid #B8975A; padding: 1rem; border-radius: 3px; font-size: 0.9rem; color: var(--text-secondary);">
+    <strong>Reality Check:</strong> This assumes smooth, consistent returns. In reality, markets fluctuate: years with +25% returns and years with -15% returns are normal. Time in market reduces timing risk. The growth shown is the long-term average, not the path you'll experience.
+  </div>
+</div>
+
+
+<!-- ================================================================================= -->
+<!-- SECTION 4: MORTGAGE CALCULATOR METHODOLOGY -->
+<!-- Add after line ~407 (after mg-res-total section) -->
+<!-- ================================================================================= -->
+
+<div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--border-light);">
+  <h3 style="font-family: var(--font-serif); font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-primary);">
+    How This Calculation Works
+  </h3>
+  
+  <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 4px; border-left: 4px solid var(--gold-primary); margin-bottom: 1.5rem;">
+    <h4 style="font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">Formula (Amortization):</h4>
+    <code style="background: var(--bg-primary); padding: 1rem; display: block; border-radius: 3px; font-size: 0.85rem; color: var(--text-secondary); overflow-x: auto; line-height: 1.6;">
+      M = P × [r(1+r)ⁿ] / [(1+r)ⁿ - 1]<br>
+      M = Monthly payment, P = Principal, r = Monthly rate, n = Total payments
+    </code>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
+    <div>
+      <h4 style="font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">✓ What This Shows:</h4>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 0.5rem;">• Principal + Interest P&I payment</li>
+        <li style="margin-bottom: 0.5rem;">• Total interest cost over loan term</li>
+        <li style="margin-bottom: 0.5rem;">• Principal balance financed</li>
+        <li style="margin-bottom: 0.5rem;">• Down payment percentage</li>
+        <li style="margin-bottom: 0.5rem;">• Supports fixed-rate mortgages</li>
+      </ul>
+    </div>
+    
+    <div>
+      <h4 style="font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);" style="color: #B91C1C;">⚠ CRITICAL - What This Does NOT Include:</h4>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 0.5rem; color: #B91C1C; font-weight: 500;">❌ Property taxes ($2K-$10K+/yr)</li>
+        <li style="margin-bottom: 0.5rem; color: #B91C1C; font-weight: 500;">❌ Homeowners insurance ($1K-$3K+/yr)</li>
+        <li style="margin-bottom: 0.5rem; color: #B91C1C; font-weight: 500;">❌ PMI if down payment <20% ($100-500/mo)</li>
+        <li style="margin-bottom: 0.5rem; color: #B91C1C; font-weight: 500;">❌ HOA fees ($200-500+/mo)</li>
+        <li style="margin-bottom: 0.5rem; color: #B91C1C; font-weight: 500;">❌ Maintenance reserves (1-2% of value)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="background: #FADBD8; border-left: 4px solid #B91C1C; padding: 1rem; border-radius: 3px; font-size: 0.9rem; color: #5A1F1F; margin-bottom: 1rem;">
+    <strong>⚠️ CRITICAL UNDERESTIMATION WARNING:</strong> This calculator shows only principal and interest. Your actual monthly cost will be 40-60% HIGHER when you include property taxes, insurance, and maintenance. For a $1M home, add $1,500-$2,500/month to the P&I shown here.
+  </div>
+
+  <div style="background: #FEF3E2; border-left: 4px solid #B8975A; padding: 1rem; border-radius: 3px; font-size: 0.9rem; color: var(--text-secondary);">
+    <strong>Next Steps:</strong> Use this P&I figure as a starting point only. Get actual quotes from lenders, property tax estimates from your local assessor, and insurance quotes to determine true monthly cost. Add 15-20% buffer for maintenance and unexpected repairs.
+  </div>
+</div>
+
+
+<!-- ================================================================================= -->
+<!-- SECTION 5: EDUCATION PLANNER METHODOLOGY -->
+<!-- Add after the Education Planner results section -->
+<!-- ================================================================================= -->
+
+<div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--border-light);">
+  <h3 style="font-family: var(--font-serif); font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-primary);">
+    How This Calculation Works
+  </h3>
+  
+  <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 4px; border-left: 4px solid var(--gold-primary); margin-bottom: 1.5rem;">
+    <h4 style="font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">Formula:</h4>
+    <code style="background: var(--bg-primary); padding: 1rem; display: block; border-radius: 3px; font-size: 0.85rem; color: var(--text-secondary); overflow-x: auto; line-height: 1.6;">
+      1. Future College Cost = Current Tuition × (1 + inflation)ⁿ<br>
+      2. Accumulated Savings = FV(current savings) + FV(contributions)<br>
+      3. Gap = Total Future Cost - Accumulated Savings
+    </code>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
+    <div>
+      <h4 style="font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">✓ What This Includes:</h4>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 0.5rem;">• Inflation adjustment for college costs</li>
+        <li style="margin-bottom: 0.5rem;">• Years until college starts</li>
+        <li style="margin-bottom: 0.5rem;">• Full study duration (typically 4 years)</li>
+        <li style="margin-bottom: 0.5rem;">• Investment returns during accumulation</li>
+        <li style="margin-bottom: 0.5rem;">• Surplus/shortfall calculation</li>
+      </ul>
+    </div>
+    
+    <div>
+      <h4 style="font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">⚠ What This Does NOT Include:</h4>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 0.5rem;">• Room and board/living expenses</li>
+        <li style="margin-bottom: 0.5rem;">• Books, supplies, equipment</li>
+        <li style="margin-bottom: 0.5rem;">• Financial aid or scholarships</li>
+        <li style="margin-bottom: 0.5rem;">• Student loan options</li>
+        <li style="margin-bottom: 0.5rem;">• Graduate school costs</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="background: #FEF3E2; border-left: 4px solid #B8975A; padding: 1rem; border-radius: 3px; font-size: 0.9rem; color: var(--text-secondary);">
+    <strong>Context:</strong> College inflation typically runs 2-3% annually above general inflation. Many students work, receive aid, or take loans. This calculator provides a baseline for savings planning—actual funding often combines savings, income, and strategic borrowing.
+  </div>
+</div>
+

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Your Account | FINORA Financial Advisory</title>
+  <meta name="description" content="Create a free FINORA account and start your financial plan.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body class="page-interior">
+
+  <!-- Top Navigation Bar -->
+  <header id="site-header" class="site-header site-header--solid" role="banner">
+    <div class="nav-container">
+      <a href="/" class="finora-logo finora-logo--charcoal" id="brand-logo" aria-label="FINORA Home">
+        <span class="finora-logo__mark">FINORA</span>
+        <span class="finora-logo__line"></span>
+        <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/health-assessment.html" class="nav-link">Financial Health</a></li>
+          <li><a href="/goals.html" class="nav-link">Goals</a></li>
+          <li><a href="/risk-assessment.html" class="nav-link">Risk Profile</a></li>
+          <li><a href="/investment-planning.html" class="nav-link">Investments</a></li>
+          <li><a href="/retirement-planner.html" class="nav-link">Retirement</a></li>
+          <li><a href="/calculators.html" class="nav-link">Calculators</a></li>
+          <li><a href="/services.html" class="nav-link">Services</a></li>
+          <li><a href="/insights.html" class="nav-link">Insights</a></li>
+          <li><a href="/about.html" class="nav-link">About</a></li>
+          <li><a href="/contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="/contact.html" class="btn btn--outline-nav">Book Advisory</a>
+        <a href="/health-assessment.html" class="btn btn--primary-nav">Assessment</a>
+        <button type="button" class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-nav-drawer" role="dialog" aria-modal="true" hidden>
+    <div class="mobile-nav-content">
+      <div class="mobile-nav-header">
+        <div class="finora-logo finora-logo--charcoal">
+          <span class="finora-logo__mark">FINORA</span>
+          <span class="finora-logo__line"></span>
+          <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+        </div>
+        <button type="button" class="close-mobile-nav" id="close-mobile-nav-btn">&times;</button>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="/" class="mobile-nav-link">Home</a></li>
+        <li><a href="/health-assessment.html" class="mobile-nav-link">Financial Health</a></li>
+        <li><a href="/goals.html" class="mobile-nav-link">Goals</a></li>
+        <li><a href="/risk-assessment.html" class="mobile-nav-link">Risk Profile</a></li>
+        <li><a href="/investment-planning.html" class="mobile-nav-link">Investments</a></li>
+        <li><a href="/retirement-planner.html" class="mobile-nav-link">Retirement</a></li>
+        <li><a href="/calculators.html" class="mobile-nav-link">Calculators</a></li>
+        <li><a href="/services.html" class="mobile-nav-link">Services</a></li>
+        <li><a href="/insights.html" class="mobile-nav-link">Insights</a></li>
+        <li><a href="/about.html" class="mobile-nav-link">About</a></li>
+        <li><a href="/contact.html" class="mobile-nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main id="main-content" class="interior-main">
+    <section class="auth-section">
+      <div class="container">
+        <div class="auth-layout">
+          <div class="auth-aside" aria-hidden="true">
+            <img src="/images/family-planning.jpg" alt="">
+            <div class="auth-aside__content">
+              <span class="section-label section-label--gold">START YOUR PLAN</span>
+              <p class="auth-aside__quote">Clarity today. Confidence for tomorrow.</p>
+              <ul class="auth-aside__list">
+                <li>Free financial health score</li>
+                <li>Goal planner with monthly targets</li>
+                <li>Risk profile and model portfolio</li>
+                <li>Retirement projection in AED</li>
+              </ul>
+            </div>
+          </div>
+          <div class="auth-card">
+            <span class="section-label">CREATE ACCOUNT</span>
+            <h1 class="auth-title">Start your financial plan</h1>
+            <p class="auth-sub">It takes less than a minute. Your information stays private.</p>
+            <div class="auth-error" id="auth-error" role="alert"></div>
+            <form id="signup-form" novalidate>
+              <div class="form-group">
+                <label class="field-label" for="su-name">Full name *</label>
+                <input class="input-text" type="text" id="su-name" name="full_name" autocomplete="name" required>
+              </div>
+              <div class="form-group">
+                <label class="field-label" for="su-email">Email address *</label>
+                <input class="input-text" type="email" id="su-email" name="email" autocomplete="email" required>
+              </div>
+              <div class="form-group">
+                <label class="field-label" for="su-password">Password *</label>
+                <input class="input-text" type="password" id="su-password" name="password" autocomplete="new-password" required>
+                <span class="field-hint">At least 8 characters, including a letter and a number.</span>
+              </div>
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="field-label" for="su-phone">Mobile (optional)</label>
+                  <input class="input-text" type="tel" id="su-phone" name="phone" autocomplete="tel" placeholder="+971 50 123 4567">
+                </div>
+                <div class="form-group">
+                  <label class="field-label" for="su-dob">Date of birth (optional)</label>
+                  <input class="input-text" type="date" id="su-dob" name="date_of_birth" autocomplete="bday">
+                </div>
+              </div>
+              <button type="submit" class="btn btn--gold btn--full mt-3" id="signup-submit">Create My Account</button>
+            </form>
+            <p class="auth-switch">Already a member? <a href="/login.html" id="switch-link">Log in</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- Charcoal Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-col footer-col--brand">
+          <a href="/" class="finora-logo finora-logo--white">
+            <span class="finora-logo__mark">FINORA</span>
+            <span class="finora-logo__line"></span>
+            <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+          </a>
+          <p class="footer-brand-text">
+            Independent, fee-only wealth planning committed to clarity, fiduciary stewardship, and generational capital preservation.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Public Tools</h4>
+          <ul class="footer-links">
+            <li><a href="/health-assessment.html">Financial Health Assessment</a></li>
+            <li><a href="/goals.html">Financial Goals Dashboard</a></li>
+            <li><a href="/risk-assessment.html">Risk Profile Assessment</a></li>
+            <li><a href="/investment-planning.html">Investment Planning</a></li>
+            <li><a href="/retirement-planner.html">Retirement Planner</a></li>
+            <li><a href="/calculators.html">Calculators Hub</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">The Firm</h4>
+          <ul class="footer-links">
+            <li><a href="/about.html">About FINORA</a></li>
+            <li><a href="/services.html">Advisory Practices</a></li>
+            <li><a href="/insights.html">Insights & Articles</a></li>
+            <li><a href="/contact.html">Book Consultation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Offices</h4>
+          <ul class="footer-office-list">
+            <li>New York • Park Avenue</li>
+            <li>London • Mayfair</li>
+            <li>Geneva • Rue du Rhône</li>
+            <li>Dubai • DIFC Gate</li>
+            <li>Singapore • Marina Bay</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom-row">
+        <p class="footer-copyright">© FINORA Financial Advisory. All rights reserved.</p>
+        <p class="disclaimer-body" style="font-size:0.75rem; color:#888;">
+          Results are estimates based on the assumptions entered and are provided for informational purposes only. Actual outcomes may differ. FINORA is a financial planning and advisory platform, not a bank, broker, or trading venue.
+        </p>
+      </div>
+    </div>
+  </footer>
+  <script type="module" src="/src/auth.js"></script>
+</body>
+</html>

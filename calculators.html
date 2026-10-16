@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financial Calculators Hub | FINORA Financial Advisory</title>
+  <meta name="description" content="Suite of institutional-grade financial calculators: Net Worth, Savings, Compound Growth, Mortgage, and Education Planning.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body class="page-interior">
+
+  <!-- Top Navigation Bar -->
+  <header id="site-header" class="site-header site-header--solid" role="banner">
+    <div class="nav-container">
+      <a href="/" class="finora-logo finora-logo--charcoal" id="brand-logo" aria-label="FINORA Home">
+        <span class="finora-logo__mark">FINORA</span>
+        <span class="finora-logo__line"></span>
+        <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/health-assessment.html" class="nav-link">Financial Health</a></li>
+          <li><a href="/goals.html" class="nav-link">Goals</a></li>
+          <li><a href="/risk-assessment.html" class="nav-link">Risk Profile</a></li>
+          <li><a href="/investment-planning.html" class="nav-link">Investments</a></li>
+          <li><a href="/retirement-planner.html" class="nav-link">Retirement</a></li>
+          <li><a href="/calculators.html" class="nav-link active">Calculators</a></li>
+          <li><a href="/services.html" class="nav-link">Services</a></li>
+          <li><a href="/insights.html" class="nav-link">Insights</a></li>
+          <li><a href="/about.html" class="nav-link">About</a></li>
+          <li><a href="/contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="/contact.html" class="btn btn--outline-nav">Book Advisory</a>
+        <a href="/health-assessment.html" class="btn btn--primary-nav">Assessment</a>
+        <button type="button" class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-nav-drawer" role="dialog" aria-modal="true" hidden>
+    <div class="mobile-nav-content">
+      <div class="mobile-nav-header">
+        <div class="finora-logo finora-logo--charcoal">
+          <span class="finora-logo__mark">FINORA</span>
+          <span class="finora-logo__line"></span>
+          <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+        </div>
+        <button type="button" class="close-mobile-nav" id="close-mobile-nav-btn">&times;</button>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="/" class="mobile-nav-link">Home</a></li>
+        <li><a href="/health-assessment.html" class="mobile-nav-link">Financial Health</a></li>
+        <li><a href="/goals.html" class="mobile-nav-link">Goals</a></li>
+        <li><a href="/risk-assessment.html" class="mobile-nav-link">Risk Profile</a></li>
+        <li><a href="/investment-planning.html" class="mobile-nav-link">Investments</a></li>
+        <li><a href="/retirement-planner.html" class="mobile-nav-link">Retirement</a></li>
+        <li><a href="/calculators.html" class="mobile-nav-link">Calculators</a></li>
+        <li><a href="/services.html" class="mobile-nav-link">Services</a></li>
+        <li><a href="/insights.html" class="mobile-nav-link">Insights</a></li>
+        <li><a href="/about.html" class="mobile-nav-link">About</a></li>
+        <li><a href="/contact.html" class="mobile-nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main id="main-content" class="interior-main">
+    
+    <section class="page-hero page-hero--with-image">
+      <div class="page-hero-bg" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1600&h=600&fit=crop" alt="" class="page-hero-image">
+        <div class="page-hero-overlay"></div>
+      </div>
+      <div class="container text-center page-hero-content">
+        <span class="section-label">FINANCIAL INSTRUMENTS</span>
+        <h1 class="page-title">Financial Calculators Hub</h1>
+        <p class="page-subtitle">
+          Transparent, interactive planning models to audit your balance sheet, evaluate mortgages, calculate compound interest, and project education funding.
+        </p>
+      </div>
+    </section>
+
+    <section class="calculators-hub-section">
+      <div class="container">
+        
+        <div class="calculator-container">
+          
+          <!-- Hub Tabs Navigation -->
+          <div class="calc-tabs" role="tablist">
+            <button type="button" class="calc-tab active" data-target="tab-networth">
+              Net Worth Calculator
+            </button>
+            <button type="button" class="calc-tab" data-target="tab-savings">
+              Savings Calculator
+            </button>
+            <button type="button" class="calc-tab" data-target="tab-compound">
+              Compound Growth
+            </button>
+            <button type="button" class="calc-tab" data-target="tab-mortgage">
+              Mortgage Calculator
+            </button>
+            <button type="button" class="calc-tab" data-target="tab-education">
+              Education Planner
+            </button>
+          </div>
+
+          <!-- TAB 1: NET WORTH CALCULATOR -->
+          <div class="calc-panel active" id="tab-networth">
+            <div class="calc-subheading-wrap">
+              <h2 class="calc-subheading">Net Worth Balance Sheet</h2>
+              <p class="section-description" style="margin: 0;">Calculate your household equity by balancing tangible assets against all liabilities.</p>
+            </div>
+
+            <div class="calc-panel-grid mt-4">
+              <!-- Assets Column -->
+              <div class="nw-column">
+                <h3 class="nw-column-title text-positive">Household Assets</h3>
+                <div class="form-group">
+                  <label for="nw-cash">Cash & Bank Deposits (AED)</label>
+                  <input type="number" id="nw-cash" class="input-text nw-asset-input" value="85000" min="0" step="1000">
+                </div>
+                <div class="form-group">
+                  <label for="nw-investments">Taxable Investments (AED)</label>
+                  <input type="number" id="nw-investments" class="input-text nw-asset-input" value="480000" min="0" step="5000">
+                </div>
+                <div class="form-group">
+                  <label for="nw-property">Real Estate Equity / Properties (AED)</label>
+                  <input type="number" id="nw-property" class="input-text nw-asset-input" value="750000" min="0" step="10000">
+                </div>
+                <div class="form-group">
+                  <label for="nw-business">Business Interests & Private Holdings (AED)</label>
+                  <input type="number" id="nw-business" class="input-text nw-asset-input" value="250000" min="0" step="10000">
+                </div>
+                <div class="form-group">
+                  <label for="nw-retirement">Retirement Accounts (401k/IRA/Pension) (AED)</label>
+                  <input type="number" id="nw-retirement" class="input-text nw-asset-input" value="420000" min="0" step="5000">
+                </div>
+                <div class="form-group">
+                  <label for="nw-other-assets">Other Assets (Vehicles, Art, Collectibles) (AED)</label>
+                  <input type="number" id="nw-other-assets" class="input-text nw-asset-input" value="65000" min="0" step="2000">
+                </div>
+              </div>
+
+              <!-- Liabilities Column -->
+              <div class="nw-column">
+                <h3 class="nw-column-title text-critical">Household Liabilities</h3>
+                <div class="form-group">
+                  <label for="nw-mortgage">Mortgage Principal Outstanding (AED)</label>
+                  <input type="number" id="nw-mortgage" class="input-text nw-liab-input" value="380000" min="0" step="5000">
+                </div>
+                <div class="form-group">
+                  <label for="nw-personal-loans">Personal & Commercial Loans (AED)</label>
+                  <input type="number" id="nw-personal-loans" class="input-text nw-liab-input" value="25000" min="0" step="1000">
+                </div>
+                <div class="form-group">
+                  <label for="nw-vehicle-loans">Vehicle Loans & Leases (AED)</label>
+                  <input type="number" id="nw-vehicle-loans" class="input-text nw-liab-input" value="35000" min="0" step="1000">
+                </div>
+                <div class="form-group">
+                  <label for="nw-credit-cards">Revolving Credit Card Debt (AED)</label>
+                  <input type="number" id="nw-credit-cards" class="input-text nw-liab-input" value="0" min="0" step="500">
+                </div>
+                <div class="form-group">
+                  <label for="nw-other-debt">Other Debts & Obligations (AED)</label>
+                  <input type="number" id="nw-other-debt" class="input-text nw-liab-input" value="10000" min="0" step="1000">
+                </div>
+              </div>
+            </div>
+
+            <!-- Net Worth Output Card -->
+            <div class="nw-summary-card mt-4">
+              <div class="nw-summary-grid">
+                <div class="nw-summary-item">
+                  <span class="nw-summary-label">Total Assets</span>
+                  <strong class="nw-summary-val text-positive" id="nw-total-assets">$2,050,000</strong>
+                </div>
+                <div class="nw-summary-item">
+                  <span class="nw-summary-label">Total Liabilities</span>
+                  <strong class="nw-summary-val text-critical" id="nw-total-liab">$450,000</strong>
+                </div>
+                <div class="nw-summary-item nw-summary-item--highlight">
+                  <span class="nw-summary-label">Estimated Net Worth</span>
+                  <strong class="nw-summary-val text-gold" id="nw-net-worth">$1,600,000</strong>
+                </div>
+              </div>
+
+              <!-- Visual Breakdown Bar -->
+              <div class="nw-breakdown-bar mt-3">
+                <div class="nw-bar-asset" id="nw-bar-equity" style="width: 78%;" title="Net Worth Equity"></div>
+                <div class="nw-bar-liab" id="nw-bar-debt" style="width: 22%;" title="Debt Ratio"></div>
+              </div>
+              <div class="nw-bar-legend">
+                <span><span class="dot-legend dot-gold"></span> Net Equity (78%)</span>
+                <span><span class="dot-legend dot-charcoal"></span> Debt Ratio (22%)</span>
+              </div>
+            </div>
+
+            <div class="calc-disclaimer-card mt-3">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8975A" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <span>Results are estimates based on the assumptions entered and are provided for informational purposes only. Actual outcomes may differ.</span>
+            </div>
+          </div>
+
+          <!-- TAB 2: SAVINGS CALCULATOR -->
+          <div class="calc-panel" id="tab-savings" hidden>
+            <div class="calc-subheading-wrap">
+              <h2 class="calc-subheading">Savings Goal Readiness</h2>
+              <p class="section-description" style="margin: 0;">Calculate whether your monthly savings plan is on track to reach your target by your deadline.</p>
+            </div>
+
+            <div class="calc-panel-grid mt-4">
+              <div class="calc-inputs-column">
+                <div class="form-group">
+                  <label for="sav-target">Target Savings Goal (AED)</label>
+                  <input type="number" id="sav-target" class="input-text" value="300000" min="5000" step="5000">
+                </div>
+                <div class="form-group">
+                  <label for="sav-current">Current Savings Balance (AED)</label>
+                  <input type="number" id="sav-current" class="input-text" value="65000" min="0" step="1000">
+                </div>
+                <div class="form-group">
+                  <label for="sav-monthly">Planned Monthly Contribution (AED)</label>
+                  <input type="number" id="sav-monthly" class="input-text" value="3200" min="100" step="100">
+                </div>
+                <div class="form-group">
+                  <label for="sav-rate">Annual Interest / Return Assumption (%)</label>
+                  <input type="number" id="sav-rate" class="input-text" value="4.5" min="0" max="15" step="0.25">
+                </div>
+                <div class="form-group">
+                  <label for="sav-date">Target Completion Date</label>
+                  <input type="date" id="sav-date" class="input-text">
+                </div>
+              </div>
+
+              <div class="calc-results-column">
+                <div class="results-card">
+                  <span class="results-card__label">Projected Outcome at Target Date</span>
+                  <div class="results-card__primary-value" id="sav-res-projected">$318,400</div>
+                  <div class="status-pill status-pill--positive mt-1" id="sav-res-status">On Track & Funded</div>
+
+                  <div class="results-breakdown-table mt-4">
+                    <div class="table-row">
+                      <span>Total You Will Save</span>
+                      <strong id="sav-res-contributions">$257,000</strong>
+                    </div>
+                    <div class="table-row">
+                      <span>Estimated Interest / Growth</span>
+                      <strong class="text-positive" id="sav-res-interest">$61,400</strong>
+                    </div>
+                    <div class="table-row">
+                      <span>Target Goal</span>
+                      <strong id="sav-res-target-disp">$300,000</strong>
+                    </div>
+                  </div>
+
+                  <div class="calc-disclaimer-card mt-3">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8975A" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    <span>Results are estimates based on the assumptions entered and are provided for informational purposes only. Actual outcomes may differ.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: COMPOUND GROWTH CALCULATOR -->
+          <div class="calc-panel" id="tab-compound" hidden>
+            <div class="calc-subheading-wrap">
+              <h2 class="calc-subheading">Compound Growth Simulator</h2>
+              <p class="section-description" style="margin: 0;">Visualize the compounding power of time, principal capital, and regular monthly contributions.</p>
+            </div>
+
+            <div class="calc-panel-grid mt-4">
+              <div class="calc-inputs-column">
+                <div class="form-group">
+                  <label for="cg-initial">Initial Investment (AED)</label>
+                  <input type="number" id="cg-initial" class="input-text" value="50000" min="0" step="5000">
+                </div>
+                <div class="form-group">
+                  <label for="cg-monthly">Monthly Addition (AED)</label>
+                  <input type="number" id="cg-monthly" class="input-text" value="2000" min="0" step="100">
+                </div>
+                <div class="form-group">
+                  <label for="cg-years">Investment Horizon (Years)</label>
+                  <input type="range" id="cg-years" min="1" max="40" value="25" class="custom-range">
+                  <span class="calc-readout" id="readout-cg-years">25 Years</span>
+                </div>
+                <div class="form-group">
+                  <label for="cg-rate">Estimated Annual Return (%)</label>
+                  <input type="range" id="cg-rate" min="2.0" max="12.0" step="0.5" value="7.0" class="custom-range">
+                  <span class="calc-readout" id="readout-cg-rate">7.0%</span>
+                </div>
+              </div>
+
+              <div class="calc-results-column">
+                <div class="results-card">
+                  <span class="results-card__label">Estimated Final Value</span>
+                  <div class="results-card__primary-value" id="cg-res-total">$1,894,000</div>
+
+                  <div class="chart-wrapper mt-3">
+                    <canvas id="compoundChart" width="460" height="180" class="interactive-canvas"></canvas>
+                  </div>
+
+                  <div class="results-breakdown-table mt-3">
+                    <div class="table-row">
+                      <span>Total Direct Contributions</span>
+                      <strong id="cg-res-contrib">$650,000</strong>
+                    </div>
+                    <div class="table-row">
+                      <span>Estimated Compound Growth</span>
+                      <strong class="text-positive" id="cg-res-growth">$1,244,000</strong>
+                    </div>
+                  </div>
+
+                  <div class="calc-disclaimer-card mt-3">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8975A" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    <span>Results are estimates based on the assumptions entered and are provided for informational purposes only. Actual outcomes may differ.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 4: MORTGAGE CALCULATOR -->
+          <div class="calc-panel" id="tab-mortgage" hidden>
+            <div class="calc-subheading-wrap">
+              <h2 class="calc-subheading">Residential Mortgage Calculator</h2>
+              <p class="section-description" style="margin: 0;">Calculate estimated principal and interest amortizations, total interest cost, and monthly obligation.</p>
+            </div>
+
+            <div class="calc-panel-grid mt-4">
+              <div class="calc-inputs-column">
+                <div class="form-group">
+                  <label for="mg-price">Property Purchase Price (AED)</label>
+                  <input type="number" id="mg-price" class="input-text" value="1200000" min="50000" step="25000">
+                </div>
+                <div class="form-group">
+                  <label for="mg-down">Down Payment (AED)</label>
+                  <input type="number" id="mg-down" class="input-text" value="300000" min="0" step="10000">
+                  <span class="field-hint" id="mg-down-pct">Down payment: 25.0%</span>
+                </div>
+                <div class="form-group">
+                  <label for="mg-interest">Fixed Annual Interest Rate (%)</label>
+                  <input type="number" id="mg-interest" class="input-text" value="5.85" min="1.0" max="15.0" step="0.05">
+                </div>
+                <div class="form-group">
+                  <label for="mg-term">Loan Term</label>
+                  <select id="mg-term" class="custom-select">
+                    <option value="15">15 Years (Fixed)</option>
+                    <option value="20">20 Years (Fixed)</option>
+                    <option value="30" selected>30 Years (Fixed)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="calc-results-column">
+                <div class="results-card">
+                  <span class="results-card__label">Estimated Monthly Payment (P&I)</span>
+                  <div class="results-card__primary-value" id="mg-res-monthly">$5,310<span class="dash-unit">/mo</span></div>
+
+                  <div class="results-breakdown-table mt-4">
+                    <div class="table-row">
+                      <span>Loan Principal Amount</span>
+                      <strong id="mg-res-principal">$900,000</strong>
+                    </div>
+                    <div class="table-row">
+                      <span>Total Estimated Interest Paid</span>
+                      <strong class="text-gold" id="mg-res-interest">$1,011,600</strong>
+                    </div>
+                    <div class="table-row">
+                      <span>Total Repayment Over Term</span>
+                      <strong id="mg-res-total">$1,911,600</strong>
+                    </div>
+                  </div>
+
+                  <div class="calc-disclaimer-card mt-3">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8975A" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    <span>Results are estimates based on the assumptions entered and are provided for informational purposes only. Actual outcomes may differ. Property taxes, insurance, and fees not included.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 5: EDUCATION PLANNER -->
+          <div class="calc-panel" id="tab-education" hidden>
+            <div class="calc-subheading-wrap">
+              <h2 class="calc-subheading">Education Tuition Funding Planner</h2>
+              <p class="section-description" style="margin: 0;">Calculate the projected future cost of university tuition accounting for higher education inflation.</p>
+            </div>
+
+            <div class="calc-panel-grid mt-4">
+              <div class="calc-inputs-column">
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label for="ed-child-age">Child's Current Age</label>
+                    <input type="number" id="ed-child-age" class="input-text" value="6" min="0" max="18">
+                  </div>
+                  <div class="form-group">
+                    <label for="ed-start-age">University Start Age</label>
+                    <input type="number" id="ed-start-age" class="input-text" value="18" min="16" max="25">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="ed-current-savings">Existing Education Savings (AED)</label>
+                  <input type="number" id="ed-current-savings" class="input-text" value="45000" min="0" step="5000">
+                </div>
+
+                <div class="form-group">
+                  <label for="ed-current-cost">Estimated Today's Annual Cost (AED)</label>
+                  <input type="number" id="ed-current-cost" class="input-text" value="55000" min="5000" step="2500">
+                  <span class="field-hint">Tuition, housing, books, and living expenses per academic year.</span>
+                </div>
+
+                <div class="form-grid-3">
+                  <div class="form-group">
+                    <label for="ed-duration">Years of Study</label>
+                    <input type="number" id="ed-duration" class="input-text" value="4" min="1" max="8">
+                  </div>
+                  <div class="form-group">
+                    <label for="ed-inflation">Tuition Inflation (%)</label>
+                    <input type="number" id="ed-inflation" class="input-text" value="4.0" min="1.0" max="10.0" step="0.5">
+                  </div>
+                  <div class="form-group">
+                    <label for="ed-return">Expected Return (%)</label>
+                    <input type="number" id="ed-return" class="input-text" value="6.0" min="1.0" max="12.0" step="0.5">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="ed-monthly-contrib">Current Monthly Contribution (AED)</label>
+                  <input type="number" id="ed-monthly-contrib" class="input-text" value="850" min="0" step="50">
+                </div>
+              </div>
+
+              <div class="calc-results-column">
+                <div class="results-card">
+                  <span class="results-card__label">Projected Total Future Education Cost</span>
+                  <div class="results-card__primary-value" id="ed-res-future-cost">$352,000</div>
+
+                  <div class="results-breakdown-table mt-4">
+                    <div class="table-row">
+                      <span>Years Until College Matriculation</span>
+                      <strong id="ed-res-years">12 Years</strong>
+                    </div>
+                    <div class="table-row">
+                      <span>Projected Accumulated Savings</span>
+                      <strong class="text-positive" id="ed-res-accumulated">$276,400</strong>
+                    </div>
+                    <div class="table-row">
+                      <span>Projected Funding Gap</span>
+                      <strong class="text-critical" id="ed-res-gap">-$75,600 Shortfall</strong>
+                    </div>
+                    <div class="table-row">
+                      <span>Suggested Monthly Contribution</span>
+                      <strong class="text-gold" id="ed-res-suggested">$1,210 / mo</strong>
+                    </div>
+                  </div>
+
+                  <div class="calc-disclaimer-card mt-3">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8975A" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    <span>Results are estimates based on the assumptions entered and are provided for informational purposes only. Actual outcomes may differ.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Charcoal Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-col footer-col--brand">
+          <a href="/" class="finora-logo finora-logo--white">
+            <span class="finora-logo__mark">FINORA</span>
+            <span class="finora-logo__line"></span>
+            <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+          </a>
+          <p class="footer-brand-text">
+            Independent, fee-only wealth planning committed to clarity, fiduciary stewardship, and generational capital preservation.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Public Tools</h4>
+          <ul class="footer-links">
+            <li><a href="/health-assessment.html">Financial Health Assessment</a></li>
+            <li><a href="/goals.html">Financial Goals Dashboard</a></li>
+            <li><a href="/risk-assessment.html">Risk Profile Assessment</a></li>
+            <li><a href="/investment-planning.html">Investment Planning</a></li>
+            <li><a href="/retirement-planner.html">Retirement Planner</a></li>
+            <li><a href="/calculators.html">Calculators Hub</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">The Firm</h4>
+          <ul class="footer-links">
+            <li><a href="/about.html">About FINORA</a></li>
+            <li><a href="/services.html">Advisory Practices</a></li>
+            <li><a href="/insights.html">Insights & Articles</a></li>
+            <li><a href="/contact.html">Book Consultation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Offices</h4>
+          <ul class="footer-office-list">
+            <li>New York • Park Avenue</li>
+            <li>London • Mayfair</li>
+            <li>Geneva • Rue du Rhône</li>
+            <li>Dubai • DIFC Gate</li>
+            <li>Singapore • Marina Bay</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom-row">
+        <p class="footer-copyright">© FINORA Financial Advisory. All rights reserved.</p>
+        <p class="disclaimer-body" style="font-size:0.75rem; color:#888;">
+          Results are estimates based on the assumptions entered and are provided for informational purposes only. Actual outcomes may differ. FINORA is a financial planning and advisory platform, not a bank, broker, or trading venue.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/calculators-hub.js"></script>
+</body>
+</html>

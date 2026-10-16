@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/api/goals/:id", "destination": "/api/goals?id=:id" },
+    { "source": "/api/insights/:slug", "destination": "/api/insights?slug=:slug" }
+  ]
+}

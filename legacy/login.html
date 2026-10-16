@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FINORA | Secure Portal Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 50%, #1A1A1A 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: #1A1A1A;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 450px;
+      background: #FFFFFF;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+
+    .login-header {
+      background: linear-gradient(135deg, #B8975A 0%, #A0855A 100%);
+      padding: 3rem 2rem;
+      text-align: center;
+      color: #FFFFFF;
+    }
+
+    .login-header .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+
+    .login-header .tagline {
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      opacity: 0.95;
+      font-weight: 500;
+    }
+
+    .login-body {
+      padding: 2.5rem;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #1A1A1A;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group input,
+    .form-group select {
+      padding: 0.875rem 1rem;
+      border: 2px solid #E5E5E5;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #B8975A;
+      box-shadow: 0 0 0 3px rgba(184, 151, 90, 0.1);
+      background-color: #FAF8F5;
+    }
+
+    .role-selector {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .role-option {
+      position: relative;
+    }
+
+    .role-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .role-option label {
+      display: block;
+      padding: 1rem;
+      text-align: center;
+      border: 2px solid #E5E5E5;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .role-option input[type="radio"]:checked + label {
+      background-color: #B8975A;
+      color: #FFFFFF;
+      border-color: #B8975A;
+    }
+
+    .form-group.password-input-wrapper {
+      position: relative;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 1rem;
+      top: 2.5rem;
+      cursor: pointer;
+      color: #B8975A;
+      font-size: 1.1rem;
+      user-select: none;
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #B8975A 0%, #A0855A 100%);
+      color: #FFFFFF;
+      padding: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 0.5rem;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(184, 151, 90, 0.3);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .form-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .form-divider line {
+      flex: 1;
+      border: none;
+      border-top: 1px solid #E5E5E5;
+    }
+
+    .form-divider span {
+      color: #999;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .error-message {
+      background-color: #FEE;
+      border: 1px solid #FCB;
+      color: #B91C1C;
+      padding: 0.875rem 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    .success-message {
+      background-color: #EFE;
+      border: 1px solid #BCB;
+      color: #2D6A4F;
+      padding: 0.875rem 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .success-message.show {
+      display: block;
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #FFFFFF;
+      animation: spin 0.8s linear infinite;
+      margin-right: 0.5rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .footer-text {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #E5E5E5;
+    }
+
+    .footer-text strong {
+      color: #1A1A1A;
+    }
+
+    @media (max-width: 600px) {
+      .login-container {
+        margin: 1rem;
+      }
+
+      .login-header {
+        padding: 2rem 1.5rem;
+      }
+
+      .login-header .logo {
+        font-size: 2rem;
+      }
+
+      .login-body {
+        padding: 1.5rem;
+      }
+
+      .role-selector {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-header">
+      <div class="logo">FINORA</div>
+      <div class="tagline">SECURE PORTAL ACCESS</div>
+    </div>
+
+    <div class="login-body">
+      <form id="loginForm" class="login-form">
+        <div class="error-message" id="errorMessage"></div>
+        <div class="success-message" id="successMessage"></div>
+
+        <div class="form-group">
+          <label>Select Role</label>
+          <div class="role-selector">
+            <div class="role-option">
+              <input type="radio" id="roleClient" name="role" value="client" checked required>
+              <label for="roleClient">💼 Client</label>
+            </div>
+            <div class="role-option">
+              <input type="radio" id="roleAdvisor" name="role" value="advisor" required>
+              <label for="roleAdvisor">📊 Advisor</label>
+            </div>
+            <div class="role-option">
+              <input type="radio" id="roleAdmin" name="role" value="admin" required>
+              <label for="roleAdmin">👤 Admin</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="your.email@example.com"
+            required
+            autocomplete="email"
+          >
+        </div>
+
+        <div class="form-group password-input-wrapper">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="••••••••"
+            required
+            autocomplete="current-password"
+          >
+          <span class="toggle-password" onclick="togglePassword()">👁️</span>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          <span id="buttonText">Secure Login</span>
+        </button>
+
+        <div class="footer-text">
+          <strong>Demo Account:</strong><br>
+          For testing, contact your administrator.
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const errorMessage = document.getElementById('errorMessage');
+    const successMessage = document.getElementById('successMessage');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const submitBtn = form.querySelector('.submit-btn');
+    const buttonText = document.getElementById('buttonText');
+
+    function togglePassword() {
+      const type = passwordInput.getAttribute('type');
+      passwordInput.setAttribute('type', type === 'password' ? 'text' : 'password');
+    }
+
+    function showError(message) {
+      errorMessage.textContent = message;
+      errorMessage.classList.add('show');
+      successMessage.classList.remove('show');
+      document.documentElement.scrollTop = 0;
+    }
+
+    function showSuccess(message) {
+      successMessage.textContent = message;
+      successMessage.classList.add('show');
+      errorMessage.classList.remove('show');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+      const role = document.querySelector('input[name="role"]:checked').value;
+
+      if (!email || !password) {
+        showError('Please enter your email and password.');
+        return;
+      }
+
+      // Disable submit button and show loading state
+      submitBtn.disabled = true;
+      const originalText = buttonText.textContent;
+      buttonText.innerHTML = '<span class="loading-spinner"></span>Logging in...';
+
+      try {
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          showError(data.error || 'Login failed. Please check your credentials.');
+          submitBtn.disabled = false;
+          buttonText.textContent = originalText;
+          return;
+        }
+
+        if (data.user.role !== role) {
+          showError(`This email is registered as a ${data.user.role}, not a ${role}.`);
+          submitBtn.disabled = false;
+          buttonText.textContent = originalText;
+          return;
+        }
+
+        // Successful login
+        showSuccess('Authentication successful! Redirecting...');
+        
+        setTimeout(() => {
+          // Redirect based on role
+          switch (role) {
+            case 'client':
+              window.location.href = '/client-dashboard.html';
+              break;
+            case 'advisor':
+              window.location.href = '/advisor-dashboard.html';
+              break;
+            case 'admin':
+              window.location.href = '/admin-dashboard.html';
+              break;
+          }
+        }, 1000);
+      } catch (error) {
+        console.error('Login error:', error);
+        showError('Connection error. Please try again.');
+        submitBtn.disabled = false;
+        buttonText.textContent = originalText;
+      }
+    });
+
+    // Clear error when typing
+    [emailInput, passwordInput].forEach(input => {
+      input.addEventListener('input', () => {
+        errorMessage.classList.remove('show');
+      });
+    });
+  </script>
+</body>
+</html>

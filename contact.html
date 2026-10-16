@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book an Advisory Consultation | FINORA Financial Advisory</title>
+  <meta name="description" content="Request a private, confidential consultation with a senior fiduciary financial advisor at FINORA. Unhurried, independent wealth planning.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/src/style.css">
+  <style>
+    .contact-layout-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 4.5rem;
+      align-items: start;
+    }
+
+    .contact-info-panel {
+      padding-top: 1rem;
+    }
+
+    .contact-intro-lead {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 2.25rem;
+    }
+
+    .advisory-pledge-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-light);
+      border-left: 3px solid var(--gold-primary);
+      padding: 1.5rem;
+      border-radius: 2px;
+      margin-bottom: 2.5rem;
+    }
+
+    .pledge-title {
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .pledge-text {
+      font-size: 0.86rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .salons-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .salon-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .salon-icon {
+      margin-top: 3px;
+      color: var(--gold-primary);
+      flex-shrink: 0;
+    }
+
+    .salon-city {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .salon-address {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    .salon-hours {
+      font-size: 0.76rem;
+      color: var(--text-light);
+    }
+
+    .contact-card-container {
+      background-color: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-radius: 2px;
+      box-shadow: var(--shadow-md);
+      padding: 3rem 2.5rem;
+      position: relative;
+    }
+
+    .contact-form-title {
+      font-family: var(--font-serif);
+      font-size: 1.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.35rem;
+    }
+
+    .contact-form-sub {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    .form-group-contact {
+      margin-bottom: 1.35rem;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--text-primary);
+      margin-bottom: 0.45rem;
+    }
+
+    .field-label .required-mark {
+      color: var(--critical);
+      margin-left: 2px;
+    }
+
+    .input-control {
+      width: 100%;
+      padding: 0.78rem 0.95rem;
+      font-size: 0.9rem;
+      font-family: var(--font-sans);
+      color: var(--text-primary);
+      background-color: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-radius: 2px;
+      transition: all var(--transition-fast);
+    }
+
+    .input-control:focus {
+      outline: none;
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 0 3px rgba(184, 151, 90, 0.12);
+    }
+
+    .input-control.has-error {
+      border-color: var(--critical);
+      background-color: #FFF9F9;
+    }
+
+    .field-error-msg {
+      font-size: 0.74rem;
+      color: var(--critical);
+      margin-top: 0.35rem;
+      display: none;
+    }
+
+    .field-error-msg.visible {
+      display: block;
+    }
+
+    .form-grid-two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .form-honey {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    .confirmation-panel {
+      text-align: center;
+      padding: 2.5rem 1rem;
+    }
+
+    .confirmation-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background-color: var(--positive-bg);
+      border: 1px solid var(--positive-border);
+      color: var(--positive);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .confirmation-title {
+      font-family: var(--font-serif);
+      font-size: 2.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .confirmation-text {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 0 auto 2rem;
+    }
+
+    .confirmation-receipt-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-light);
+      padding: 1.5rem;
+      border-radius: 2px;
+      text-align: left;
+      margin-bottom: 2rem;
+      font-size: 0.85rem;
+    }
+
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      border-bottom: 1px dashed var(--border-subtle);
+    }
+
+    .receipt-row:last-child {
+      border-bottom: none;
+    }
+
+    .receipt-label {
+      color: var(--text-secondary);
+    }
+
+    .receipt-val {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    @media (max-width: 960px) {
+      .contact-layout-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .form-grid-two {
+        grid-template-columns: 1fr;
+      }
+      .contact-card-container {
+        padding: 2rem 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body class="page-interior">
+
+  <!-- Top Navigation Bar -->
+  <header id="site-header" class="site-header site-header--solid" role="banner">
+    <div class="nav-container">
+      <a href="/" class="finora-logo finora-logo--charcoal" id="brand-logo" aria-label="FINORA Home">
+        <span class="finora-logo__mark">FINORA</span>
+        <span class="finora-logo__line"></span>
+        <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/health-assessment.html" class="nav-link">Financial Health</a></li>
+          <li><a href="/goals.html" class="nav-link">Goals</a></li>
+          <li><a href="/risk-assessment.html" class="nav-link">Risk Profile</a></li>
+          <li><a href="/investment-planning.html" class="nav-link">Investments</a></li>
+          <li><a href="/retirement-planner.html" class="nav-link">Retirement</a></li>
+          <li><a href="/calculators.html" class="nav-link">Calculators</a></li>
+          <li><a href="/services.html" class="nav-link">Services</a></li>
+          <li><a href="/insights.html" class="nav-link">Insights</a></li>
+          <li><a href="/about.html" class="nav-link">About</a></li>
+          <li><a href="/contact.html" class="nav-link active">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="/contact.html" class="btn btn--outline-nav">Book Advisory</a>
+        <a href="/health-assessment.html" class="btn btn--primary-nav">Assessment</a>
+        <button type="button" class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-nav-drawer" role="dialog" aria-modal="true" hidden>
+    <div class="mobile-nav-content">
+      <div class="mobile-nav-header">
+        <div class="finora-logo finora-logo--charcoal">
+          <span class="finora-logo__mark">FINORA</span>
+          <span class="finora-logo__line"></span>
+          <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+        </div>
+        <button type="button" class="close-mobile-nav" id="close-mobile-nav-btn">&times;</button>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="/" class="mobile-nav-link">Home</a></li>
+        <li><a href="/health-assessment.html" class="mobile-nav-link">Financial Health</a></li>
+        <li><a href="/goals.html" class="mobile-nav-link">Goals</a></li>
+        <li><a href="/risk-assessment.html" class="mobile-nav-link">Risk Profile</a></li>
+        <li><a href="/investment-planning.html" class="mobile-nav-link">Investments</a></li>
+        <li><a href="/retirement-planner.html" class="mobile-nav-link">Retirement</a></li>
+        <li><a href="/calculators.html" class="mobile-nav-link">Calculators</a></li>
+        <li><a href="/services.html" class="mobile-nav-link">Services</a></li>
+        <li><a href="/insights.html" class="mobile-nav-link">Insights</a></li>
+        <li><a href="/about.html" class="mobile-nav-link">About</a></li>
+        <li><a href="/contact.html" class="mobile-nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main id="main-content" class="interior-main">
+    
+    <!-- Hero / Title -->
+    <section class="page-hero page-hero--with-image">
+      <div class="page-hero-bg" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&h=600&fit=crop" alt="" class="page-hero-image">
+        <div class="page-hero-overlay"></div>
+      </div>
+      <div class="container text-center page-hero-content">
+        <span class="section-label">CONFIDENTIAL ADVISORY INQUIRY</span>
+        <h1 class="page-title">Book a Private Consultation</h1>
+        <p class="page-subtitle">
+          Initiate an unhurried, independent conversation with a senior fiduciary advisor. We explore your family aspirations, analyze existing assets, and clarify your path forward without sales pressure.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Contact & Form Section -->
+    <section class="contact-section" style="padding: 2rem 0 6rem;">
+      <div class="container">
+        
+        <div class="contact-layout-grid">
+          
+          <!-- Left: Narrative, Salons & Fiduciary Code -->
+          <div class="contact-info-panel">
+            <span class="section-label">THE ADVISORY SALON</span>
+            <h2 class="section-heading" style="font-size: 2.2rem; margin-bottom: 1rem;">Unhurried Counsel, Absolute Discretion</h2>
+            <p class="contact-intro-lead">
+              At FINORA, initial consultations are exploratory dialogues, not sales pitches. We dedicate 60 minutes to understanding your balance sheet, your family governance goals, and your liquidity requirements.
+            </p>
+
+            <div class="advisory-pledge-card">
+              <div class="pledge-title">Our Fiduciary Protocol</div>
+              <p class="pledge-text">
+                FINORA maintains strict non-disclosure standards. We never sell customer records, never accept trading kickbacks or product commissions, and provide fee-only counsel governed solely by your best interests.
+              </p>
+            </div>
+
+            <div class="salons-list">
+              <div class="salon-item">
+                <svg class="salon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <div>
+                  <div class="salon-city">New York • Park Avenue</div>
+                  <div class="salon-address">767 Fifth Avenue, Midtown Manhattan, NY 10153</div>
+                  <div class="salon-hours">Monday – Friday: 08:30 – 18:00 EST</div>
+                </div>
+              </div>
+
+              <div class="salon-item">
+                <svg class="salon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <div>
+                  <div class="salon-city">London • Mayfair</div>
+                  <div class="salon-address">28 Berkeley Square, Mayfair, London W1J 6EN</div>
+                  <div class="salon-hours">Monday – Friday: 09:00 – 17:30 GMT</div>
+                </div>
+              </div>
+
+              <div class="salon-item">
+                <svg class="salon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <div>
+                  <div class="salon-city">Geneva • Rue du Rhône</div>
+                  <div class="salon-address">12 Rue du Rhône, 1204 Genève, Switzerland</div>
+                  <div class="salon-hours">Monday – Friday: 09:00 – 18:00 CET</div>
+                </div>
+              </div>
+
+              <div class="salon-item">
+                <svg class="salon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <div>
+                  <div class="salon-city">Dubai • DIFC</div>
+                  <div class="salon-address">Gate Village 04, Level 5, DIFC, Dubai, UAE</div>
+                  <div class="salon-hours">Monday – Friday: 09:00 – 18:00 GST</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="consultation-direct" style="border-color: var(--border-light);">
+              <span class="direct-label">Direct Fiduciary Inquiries</span>
+              <a href="mailto:advisory@finora-advisory.com" class="direct-email" style="color: var(--text-primary);">advisory@finora-advisory.com</a>
+              <span class="direct-phone" style="color: var(--text-secondary);">Direct Concierge: +1 (212) 555-0198</span>
+            </div>
+
+          </div>
+
+          <!-- Right: Interactive Consultation Form -->
+          <div class="contact-card-container">
+            
+            <!-- Active Form View -->
+            <div id="consultation-form-wrapper">
+              <h3 class="contact-form-title">Schedule a Consultation</h3>
+              <p class="contact-form-sub">Please provide your details below. A dedicated senior fiduciary will reach out within 24 hours.</p>
+
+              <form id="consultation-booking-form" novalidate>
+                
+                <!-- Anti-Spam Honeypot Field (Hidden from human users) -->
+                <div class="form-honey" aria-hidden="true">
+                  <label for="preferred_nickname">Leave this field empty</label>
+                  <input type="text" id="preferred_nickname" name="preferred_nickname" tabindex="-1" autocomplete="off">
+                </div>
+
+                <!-- Full Name -->
+                <div class="form-group-contact">
+                  <label for="contact-name" class="field-label">Full Name <span class="required-mark">*</span></label>
+                  <input type="text" id="contact-name" class="input-control" placeholder="e.g. Alistair Vance" required autocomplete="name">
+                  <div id="error-name" class="field-error-msg">Please enter your full name.</div>
+                </div>
+
+                <!-- Email & Phone Grid -->
+                <div class="form-grid-two">
+                  <div class="form-group-contact">
+                    <label for="contact-email" class="field-label">Email Address <span class="required-mark">*</span></label>
+                    <input type="email" id="contact-email" class="input-control" placeholder="vance@heritage-trust.com" required autocomplete="email">
+                    <div id="error-email" class="field-error-msg">Please provide a valid corporate or private email.</div>
+                  </div>
+
+                  <div class="form-group-contact">
+                    <label for="contact-phone" class="field-label">Telephone / Mobile</label>
+                    <input type="tel" id="contact-phone" class="input-control" placeholder="+971 50 123 4567" autocomplete="tel">
+                    <div id="error-phone" class="field-error-msg">Please enter a valid telephone number.</div>
+                  </div>
+                </div>
+
+                <!-- Country & Contact Method Grid -->
+                <div class="form-grid-two">
+                  <div class="form-group-contact">
+                    <label for="contact-country" class="field-label">Country of Residence <span class="required-mark">*</span></label>
+                    <select id="contact-country" class="input-control" required>
+                      <option value="United States">United States</option>
+                      <option value="United Kingdom">United Kingdom</option>
+                      <option value="Switzerland">Switzerland</option>
+                      <option value="United Arab Emirates" selected>United Arab Emirates</option>
+                      <option value="Singapore">Singapore</option>
+                      <option value="Canada">Canada</option>
+                      <option value="Australia">Australia</option>
+                      <option value="Monaco">Monaco</option>
+                      <option value="Germany">Germany</option>
+                      <option value="France">France</option>
+                      <option value="Other">Other Global Jurisdiction</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group-contact">
+                    <label for="contact-method" class="field-label">Preferred Contact Method</label>
+                    <select id="contact-method" class="input-control">
+                      <option value="Email" selected>Email Correspondence</option>
+                      <option value="Phone">Telephone Discussion</option>
+                      <option value="Video Call">Encrypted Video Conference</option>
+                      <option value="In-Person Salon">In-Person Advisory Salon</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Area of Interest -->
+                <div class="form-group-contact">
+                  <label for="contact-interest" class="field-label">Area of Primary Interest <span class="required-mark">*</span></label>
+                  <select id="contact-interest" class="input-control">
+                    <option value="">General enquiry (not sure yet)</option>
+                  </select>
+                </div>
+
+                <!-- Preferred Date -->
+                <div class="form-group-contact">
+                  <label for="contact-date" class="field-label">Preferred Consultation Date</label>
+                  <input type="date" id="contact-date" class="input-control">
+                  <div id="error-date" class="field-error-msg">Please select an upcoming business date.</div>
+                </div>
+
+                <!-- Message / Context -->
+                <div class="form-group-contact">
+                  <label for="contact-message" class="field-label">Brief Background or Specific Questions</label>
+                  <textarea id="contact-message" class="input-control" rows="4" placeholder="Briefly outline your current financial circumstances, timeline, or specific questions you wish to explore during our session..."></textarea>
+                </div>
+
+                <!-- Submission status feedback alert -->
+                <div id="form-general-error" class="form-feedback-message form-feedback-message--error" style="display: none; margin-bottom: 1.25rem; background-color: var(--critical-bg); border-color: var(--critical-border); color: var(--critical);">
+                  <span id="general-error-text">Please review highlighted fields before proceeding.</span>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn--primary btn--full" id="btn-submit-consultation" style="padding: 1rem 1.5rem; font-weight: 600; letter-spacing: 0.04em;">
+                  Request Confidential Consultation
+                </button>
+
+                <p class="text-center text-muted mt-3" style="font-size: 0.74rem;">
+                  By submitting, you agree to receive fiduciary correspondence regarding your advisory request. FINORA maintains zero-spam integrity.
+                </p>
+
+              </form>
+            </div>
+
+            <!-- Confirmation View (Shown on Successful Submission) -->
+            <div id="consultation-confirmation" class="confirmation-panel" style="display: none;">
+              <div class="confirmation-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+
+              <span class="section-label">REQUEST CONFIRMED</span>
+              <h3 class="confirmation-title">Consultation Requested</h3>
+              <p class="confirmation-text">
+                Thank you for reaching out to FINORA. Your request has been assigned to our Senior Advisory Committee under strict fiduciary confidentiality.
+              </p>
+
+              <div class="confirmation-receipt-card">
+                <div class="receipt-row">
+                  <span class="receipt-label">Inquiry Reference:</span>
+                  <span class="receipt-val" id="receipt-ref">FIN-2026-8891</span>
+                </div>
+                <div class="receipt-row">
+                  <span class="receipt-label">Client Name:</span>
+                  <span class="receipt-val" id="receipt-name">—</span>
+                </div>
+                <div class="receipt-row">
+                  <span class="receipt-label">Email:</span>
+                  <span class="receipt-val" id="receipt-email">—</span>
+                </div>
+                <div class="receipt-row">
+                  <span class="receipt-label">Focus Area:</span>
+                  <span class="receipt-val" id="receipt-interest">—</span>
+                </div>
+                <div class="receipt-row">
+                  <span class="receipt-label">Preferred Medium:</span>
+                  <span class="receipt-val" id="receipt-method">—</span>
+                </div>
+                <div class="receipt-row">
+                  <span class="receipt-label">Next Step:</span>
+                  <span class="receipt-val" style="color: var(--positive);">Senior Advisor Outreach within 1 Business Day</span>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="/" class="btn btn--secondary">Return to Home</a>
+                <a href="/calculators.html" class="btn btn--primary">Explore Calculators</a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Fiduciary Disclaimer -->
+    <section class="disclaimer-section">
+      <div class="container">
+        <div class="disclaimer-box">
+          <div class="disclaimer-header">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8975A" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <span class="disclaimer-title">Fiduciary Advisory Disclaimer</span>
+          </div>
+          <p class="disclaimer-body">
+            FINORA Financial Advisory provides financial planning, wealth architecture, and scenario modeling for educational and planning purposes. We are not a broker-dealer, bank, or securities exchange and do not execute securities transactions or custody client funds. Initial consultations do not establish an attorney-client or formal advisory agreement until an engagement letter is executed.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Charcoal Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-col footer-col--brand">
+          <a href="/" class="finora-logo finora-logo--white">
+            <span class="finora-logo__mark">FINORA</span>
+            <span class="finora-logo__line"></span>
+            <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+          </a>
+          <p class="footer-brand-text">
+            Independent, fee-only wealth planning committed to clarity, fiduciary stewardship, and generational capital preservation.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Public Tools</h4>
+          <ul class="footer-links">
+            <li><a href="/health-assessment.html">Financial Health Assessment</a></li>
+            <li><a href="/goals.html">Financial Goals Dashboard</a></li>
+            <li><a href="/risk-assessment.html">Risk Profile Assessment</a></li>
+            <li><a href="/investment-planning.html">Investment Planning</a></li>
+            <li><a href="/retirement-planner.html">Retirement Planner</a></li>
+            <li><a href="/calculators.html">Calculators Hub</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">The Firm</h4>
+          <ul class="footer-links">
+            <li><a href="/about.html">About FINORA</a></li>
+            <li><a href="/services.html">Advisory Practices</a></li>
+            <li><a href="/insights.html">Insights & Articles</a></li>
+            <li><a href="/contact.html">Book Consultation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Offices</h4>
+          <ul class="footer-office-list">
+            <li>New York • Park Avenue</li>
+            <li>London • Mayfair</li>
+            <li>Geneva • Rue du Rhône</li>
+            <li>Dubai • DIFC Gate</li>
+            <li>Singapore • Marina Bay</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom-row">
+        <p class="footer-copyright">© FINORA Financial Advisory. All rights reserved.</p>
+        <p class="disclaimer-body" style="font-size:0.75rem; color:#888;">
+          Results are estimates based on the assumptions entered and are provided for informational purposes only. Actual outcomes may differ. FINORA is a financial planning and advisory platform, not a bank, broker, or trading venue.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/contact.js"></script>
+</body>
+</html>

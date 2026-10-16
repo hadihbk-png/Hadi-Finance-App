@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | FINORA Financial Advisory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #FAF8F5;
+      color: #1A1A1A;
+      line-height: 1.6;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%);
+      color: #FFFFFF;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    section {
+      background: #FFFFFF;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      color: #B8975A;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #E5E5E5;
+      padding-bottom: 0.5rem;
+    }
+
+    h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: #1A1A1A;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: #666;
+    }
+
+    ul, ol {
+      margin-left: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      color: #666;
+    }
+
+    .highlight {
+      background: #FFF9F0;
+      border-left: 4px solid #B8975A;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      color: #999;
+      font-size: 0.9rem;
+    }
+
+    a {
+      color: #B8975A;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Privacy Policy</h1>
+    <p>Last Updated: September 2026</p>
+  </div>
+
+  <div class="container">
+    <section>
+      <h2>1. Overview</h2>
+      <p>
+        FINORA Financial Advisory ("we," "us," or "our") operates this financial planning platform. This Privacy Policy explains how we collect, use, and protect your information when you use our service.
+      </p>
+    </section>
+
+    <section>
+      <h2>2. Information We Collect</h2>
+      
+      <h3>Account Information</h3>
+      <ul>
+        <li>Email address</li>
+        <li>Name (for advisors and admin users)</li>
+        <li>Phone number (optional)</li>
+        <li>User role (Client, Advisor, Admin)</li>
+      </ul>
+
+      <h3>Financial Information</h3>
+      <ul>
+        <li>Income and expense data</li>
+        <li>Asset and liability information</li>
+        <li>Investment holdings and retirement account values</li>
+        <li>Financial goals and targets</li>
+        <li>Risk assessment responses</li>
+      </ul>
+
+      <h3>Technical Information</h3>
+      <ul>
+        <li>IP address and browser information</li>
+        <li>Pages visited and time spent</li>
+        <li>Session activities for audit purposes</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>3. How We Use Your Information</h2>
+      <ul>
+        <li>To provide and improve our financial planning services</li>
+        <li>To authenticate users and manage accounts</li>
+        <li>To calculate financial recommendations and projections</li>
+        <li>To maintain security logs and prevent fraud</li>
+        <li>To comply with legal and regulatory requirements</li>
+      </ul>
+
+      <div class="highlight">
+        <strong>We do NOT:</strong>
+        <ul>
+          <li>Sell your personal or financial data</li>
+          <li>Share data with third parties without consent</li>
+          <li>Use your data for marketing purposes</li>
+          <li>Disclose specific financial information in logs or error messages</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>4. Data Security</h2>
+      <p>
+        We implement industry-standard security measures:
+      </p>
+      <ul>
+        <li>HTTPS encryption for all data in transit</li>
+        <li>Passwords hashed with bcryptjs (10 salt rounds)</li>
+        <li>Session tokens with secure, httpOnly cookies</li>
+        <li>Access controls based on user roles</li>
+        <li>Audit logs tracking all user actions</li>
+        <li>SQL injection and XSS protections</li>
+      </ul>
+
+      <div class="highlight">
+        <strong>Limitation:</strong> This demonstration platform should not be used with real financial data without professional security review. For production use with actual client data, additional security measures must be implemented.
+      </div>
+    </section>
+
+    <section>
+      <h2>5. User Roles and Data Access</h2>
+      
+      <h3>Clients</h3>
+      <p>Can access only their own financial data. Cannot view other clients' information, advisor notes, or admin functions.</p>
+
+      <h3>Advisors</h3>
+      <p>Can view financial information only for clients assigned to them. Cannot access other advisors' clients or admin functions. Can create private notes.</p>
+
+      <h3>Administrators</h3>
+      <p>Can view user management and audit logs. Cannot access individual client financial data unless explicitly assigned.</p>
+    </section>
+
+    <section>
+      <h2>6. Session Management</h2>
+      <ul>
+        <li>Sessions expire after 24 hours of inactivity</li>
+        <li>All sessions are encrypted and stored securely</li>
+        <li>Logout immediately destroys the session</li>
+        <li>Session activity is logged for audit purposes</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>7. Audit Logging</h2>
+      <p>
+        For security and regulatory purposes, we maintain audit logs of:
+      </p>
+      <ul>
+        <li>Login and logout events</li>
+        <li>Data access and modifications</li>
+        <li>Administrative actions</li>
+        <li>User account changes</li>
+      </ul>
+      <p>Audit logs include timestamps and IP addresses but do not contain sensitive financial data.</p>
+    </section>
+
+    <section>
+      <h2>8. Cookies</h2>
+      <p>
+        We use only essential cookies for authentication and session management:
+      </p>
+      <ul>
+        <li><code>connect.sid</code> - Session identifier (httpOnly, secure)</li>
+      </ul>
+      <p>These cookies are necessary for the platform to function and cannot be disabled.</p>
+    </section>
+
+    <section>
+      <h2>9. Data Retention</h2>
+      <ul>
+        <li>Active user data is retained while the account is active</li>
+        <li>Audit logs are retained for 1 year for compliance purposes</li>
+        <li>Deactivated accounts are marked as inactive (soft delete) and not permanently deleted</li>
+        <li>Users can request data export or deletion (contact administrator)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>10. Third-Party Services</h2>
+      <p>
+        This is a demonstration platform built on:
+      </p>
+      <ul>
+        <li><strong>Frontend:</strong> Vite, vanilla JavaScript, HTML/CSS</li>
+        <li><strong>Backend:</strong> Node.js, Express.js</li>
+        <li><strong>Database:</strong> PostgreSQL (hosted on Neon for production examples)</li>
+      </ul>
+      <p>No third-party analytics, tracking, or advertising services are integrated.</p>
+    </section>
+
+    <section>
+      <h2>11. Your Rights</h2>
+      <p>
+        You have the right to:
+      </p>
+      <ul>
+        <li>Access your personal data</li>
+        <li>Request corrections to your data</li>
+        <li>Request deletion of your account (soft delete)</li>
+        <li>Download your financial data</li>
+        <li>Change your password at any time</li>
+        <li>Logout and end your session</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>12. Changes to This Policy</h2>
+      <p>
+        We may update this Privacy Policy periodically. Changes will be posted on this page with an updated "Last Updated" date. Your continued use of the platform constitutes acceptance of the updated policy.
+      </p>
+    </section>
+
+    <section>
+      <h2>13. Contact Us</h2>
+      <p>
+        For privacy-related questions or concerns, contact the administrator through the contact form at <a href="/contact.html">/contact.html</a>
+      </p>
+    </section>
+
+    <div class="footer">
+      <p>&copy; 2026 FINORA Financial Advisory. All rights reserved.</p>
+      <p>This is a demonstration platform for educational purposes.</p>
+    </div>
+  </div>
+</body>
+</html>

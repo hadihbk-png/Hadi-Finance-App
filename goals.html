@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financial Goals & Milestone Planning | FINORA Financial Advisory</title>
+  <meta name="description" content="Define and track life goals from home acquisitions to retirement nest eggs with mathematical precision.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body class="page-interior" data-auth="required">
+
+  <!-- Top Navigation Bar -->
+  <header id="site-header" class="site-header site-header--solid" role="banner">
+    <div class="nav-container">
+      <a href="/" class="finora-logo finora-logo--charcoal" id="brand-logo" aria-label="FINORA Home">
+        <span class="finora-logo__mark">FINORA</span>
+        <span class="finora-logo__line"></span>
+        <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/health-assessment.html" class="nav-link">Financial Health</a></li>
+          <li><a href="/goals.html" class="nav-link active">Goals</a></li>
+          <li><a href="/risk-assessment.html" class="nav-link">Risk Profile</a></li>
+          <li><a href="/investment-planning.html" class="nav-link">Investments</a></li>
+          <li><a href="/retirement-planner.html" class="nav-link">Retirement</a></li>
+          <li><a href="/calculators.html" class="nav-link">Calculators</a></li>
+          <li><a href="/services.html" class="nav-link">Services</a></li>
+          <li><a href="/insights.html" class="nav-link">Insights</a></li>
+          <li><a href="/about.html" class="nav-link">About</a></li>
+          <li><a href="/contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="/contact.html" class="btn btn--outline-nav">Book Advisory</a>
+        <a href="/health-assessment.html" class="btn btn--primary-nav">Assessment</a>
+        <button type="button" class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-nav-drawer" role="dialog" aria-modal="true" hidden>
+    <div class="mobile-nav-content">
+      <div class="mobile-nav-header">
+        <div class="finora-logo finora-logo--charcoal">
+          <span class="finora-logo__mark">FINORA</span>
+          <span class="finora-logo__line"></span>
+          <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+        </div>
+        <button type="button" class="close-mobile-nav" id="close-mobile-nav-btn">&times;</button>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="/" class="mobile-nav-link">Home</a></li>
+        <li><a href="/health-assessment.html" class="mobile-nav-link">Financial Health</a></li>
+        <li><a href="/goals.html" class="mobile-nav-link">Goals</a></li>
+        <li><a href="/risk-assessment.html" class="mobile-nav-link">Risk Profile</a></li>
+        <li><a href="/investment-planning.html" class="mobile-nav-link">Investments</a></li>
+        <li><a href="/retirement-planner.html" class="mobile-nav-link">Retirement</a></li>
+        <li><a href="/calculators.html" class="mobile-nav-link">Calculators</a></li>
+        <li><a href="/services.html" class="mobile-nav-link">Services</a></li>
+        <li><a href="/insights.html" class="mobile-nav-link">Insights</a></li>
+        <li><a href="/about.html" class="mobile-nav-link">About</a></li>
+        <li><a href="/contact.html" class="mobile-nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main id="main-content" class="interior-main">
+    
+    <!-- Hero / Title -->
+    <section class="page-hero page-hero--with-image">
+      <div class="page-hero-bg" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&h=600&fit=crop" alt="" class="page-hero-image">
+        <div class="page-hero-overlay"></div>
+      </div>
+      <div class="container text-center page-hero-content">
+        <span class="section-label">MILESTONE STRUCTURING</span>
+        <h1 class="page-title">Financial Goals Planner</h1>
+        <p class="page-subtitle">
+          Structure your major life ambitions into disciplined capital accumulation schedules. Track progress, funding gaps, and monthly savings requirements in real time.
+        </p>
+      </div>
+    </section>
+
+    <!-- Goals Content Area -->
+    <section class="goals-section">
+      <div class="container">
+        
+        <div class="goals-layout">
+          
+          <!-- Column 1: Add New Goal Form Card -->
+          <div class="goals-creator-card">
+            <div class="creator-header">
+              <span class="section-label">NEW MILESTONE</span>
+              <h2 class="creator-title" id="goal-form-title">Define a Financial Goal</h2>
+              <p class="creator-desc">Add a goal to see how long it will take at your monthly contribution.</p>
+            </div>
+
+            <form id="create-goal-form" class="goal-form" novalidate>
+              <input type="hidden" id="goal-edit-id" value="">
+              <div class="form-group">
+                <label for="goal-type-select" class="field-label">Goal Category *</label>
+                <select id="goal-type-select" name="category" class="custom-select" required>
+                  <option value="Emergency Fund">Emergency Fund</option>
+                  <option value="Home">Home</option>
+                  <option value="Education">Education</option>
+                  <option value="Retirement">Retirement</option>
+                  <option value="Travel">Travel</option>
+                  <option value="Wealth">Wealth</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="goal-name-input" class="field-label">Goal Name *</label>
+                <input type="text" id="goal-name-input" name="name" class="input-text" placeholder="e.g. Apartment deposit in Dubai Hills" maxlength="120" required>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="goal-target-input" class="field-label">Target Amount (AED) *</label>
+                  <input type="number" id="goal-target-input" name="target_amount" class="input-text" placeholder="400000" min="1" step="0.01" required>
+                </div>
+                <div class="form-group">
+                  <label for="goal-current-input" class="field-label">Saved So Far (AED)</label>
+                  <input type="number" id="goal-current-input" name="current_amount" class="input-text" placeholder="0" min="0" step="0.01">
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="goal-monthly-input" class="field-label">Monthly Contribution (AED)</label>
+                  <input type="number" id="goal-monthly-input" name="monthly_contribution" class="input-text" placeholder="5000" min="0" step="0.01">
+                </div>
+                <div class="form-group">
+                  <label for="goal-date-input" class="field-label">Target Date</label>
+                  <input type="date" id="goal-date-input" name="target_date" class="input-text">
+                </div>
+              </div>
+
+              <!-- Live preview -->
+              <div class="live-calc-preview" id="live-goal-preview">
+                <div class="preview-row"><span>Still to save:</span><strong id="preview-gap">AED 0</strong></div>
+                <div class="preview-row"><span>Months to reach goal:</span><strong class="text-gold" id="preview-months">—</strong></div>
+                <div class="preview-row"><span>Needed per month for target date:</span><strong id="preview-suggested">—</strong></div>
+                <div class="preview-row"><span>Current progress:</span><strong class="text-positive" id="preview-progress">0%</strong></div>
+              </div>
+
+              <div class="form-actions-row">
+                <button type="button" class="btn btn--secondary" id="btn-cancel-edit" hidden>Cancel</button>
+                <button type="submit" class="btn btn--primary" id="btn-save-goal">Add Goal</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Column 2: Active Goals Dashboard & Visual Cards -->
+          <div class="goals-dashboard-column">
+            <div class="goals-dashboard-header">
+              <div>
+                <span class="section-label">ACTIVE MILESTONES</span>
+                <h2 class="creator-title">Your Goals Portfolio</h2>
+              </div>
+              <span class="goals-count-badge" id="goals-count-badge">Loading…</span>
+            </div>
+
+            <!-- Visual Goals Grid -->
+            <div class="goals-cards-list" id="goals-cards-list">
+              <!-- Dynamically populated via JS -->
+            </div>
+
+            <div class="calc-disclaimer-card mt-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8975A" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <span>Results are estimates based on the assumptions entered and are provided for informational purposes only. Actual outcomes may differ.</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Charcoal Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-col footer-col--brand">
+          <a href="/" class="finora-logo finora-logo--white">
+            <span class="finora-logo__mark">FINORA</span>
+            <span class="finora-logo__line"></span>
+            <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+          </a>
+          <p class="footer-brand-text">
+            Independent, fee-only wealth planning committed to clarity, fiduciary stewardship, and generational capital preservation.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Public Tools</h4>
+          <ul class="footer-links">
+            <li><a href="/health-assessment.html">Financial Health Assessment</a></li>
+            <li><a href="/goals.html">Financial Goals Dashboard</a></li>
+            <li><a href="/risk-assessment.html">Risk Profile Assessment</a></li>
+            <li><a href="/investment-planning.html">Investment Planning</a></li>
+            <li><a href="/retirement-planner.html">Retirement Planner</a></li>
+            <li><a href="/calculators.html">Calculators Hub</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">The Firm</h4>
+          <ul class="footer-links">
+            <li><a href="/about.html">About FINORA</a></li>
+            <li><a href="/services.html">Advisory Practices</a></li>
+            <li><a href="/insights.html">Insights & Articles</a></li>
+            <li><a href="/contact.html">Book Consultation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Offices</h4>
+          <ul class="footer-office-list">
+            <li>New York • Park Avenue</li>
+            <li>London • Mayfair</li>
+            <li>Geneva • Rue du Rhône</li>
+            <li>Dubai • DIFC Gate</li>
+            <li>Singapore • Marina Bay</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom-row">
+        <p class="footer-copyright">© FINORA Financial Advisory. All rights reserved.</p>
+        <p class="disclaimer-body" style="font-size:0.75rem; color:#888;">
+          Results are estimates based on the assumptions entered and are provided for informational purposes only. Actual outcomes may differ. FINORA is a financial planning and advisory platform, not a bank, broker, or trading venue.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/goals.js"></script>
+</body>
+</html>

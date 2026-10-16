@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Server Error | FINORA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #7F1D1D 0%, #5A1F1F 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+    }
+
+    .error-container {
+      text-align: center;
+      padding: 3rem;
+      max-width: 600px;
+    }
+
+    .error-code {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 6rem;
+      font-weight: 700;
+      color: #EF4444;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+
+    .error-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #FFFFFF;
+    }
+
+    .error-message {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: #CCC;
+      line-height: 1.6;
+    }
+
+    .error-details {
+      background: rgba(239, 68, 68, 0.15);
+      border-left: 4px solid #EF4444;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      text-align: left;
+      color: #AAA;
+      font-size: 0.9rem;
+    }
+
+    .error-details h3 {
+      color: #FECACA;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .error-details p {
+      margin: 0.25rem 0;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: #EF4444;
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background: #DC2626;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #FECACA;
+      border: 2px solid #FECACA;
+    }
+
+    .btn-secondary:hover {
+      background: #EF4444;
+      color: #FFFFFF;
+    }
+
+    .footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: #999;
+    }
+
+    .footer a {
+      color: #FECACA;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="error-container">
+    <div class="error-code">500</div>
+    <h1 class="error-title">Server Error</h1>
+    
+    <p class="error-message">
+      Something went wrong on our end. Our team has been notified and is working to fix the issue.
+    </p>
+
+    <div class="error-details">
+      <h3>What you can do:</h3>
+      <p>• Try refreshing the page</p>
+      <p>• Clear your browser cache and cookies</p>
+      <p>• Try again in a few minutes</p>
+      <p>• Contact support if the problem persists</p>
+    </div>
+
+    <div class="action-buttons">
+      <button class="btn btn-primary" onclick="location.reload()">Refresh Page</button>
+      <a href="/" class="btn btn-secondary">Back to Home</a>
+    </div>
+
+    <div class="footer">
+      <p>Error Ref ID: <code style="background: rgba(0,0,0,0.3); padding: 0.25rem 0.5rem; border-radius: 4px;">ERR-500-FINORA</code></p>
+      <p>Still having issues? <a href="/contact.html">Contact support</a></p>
+      <p>&copy; 2026 FINORA Financial Advisory</p>
+    </div>
+  </div>
+</body>
+</html>

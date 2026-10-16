@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FINORA Financial Advisory | Clarity Today. Confidence for Tomorrow.</title>
+  <meta name="description" content="FINORA is a premier financial planning and wealth advisory platform for individuals and families. Understand your financial position, define goals, and plan your retirement.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  
+  <!-- Google Fonts: Cormorant Garamond (Serif Headings) & Inter (Modern Clean Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header id="site-header" class="site-header" role="banner">
+    <div class="nav-container">
+      
+      <!-- Brand Logo -->
+      <a href="/" class="finora-logo finora-logo--white" id="brand-logo" aria-label="FINORA Financial Advisory Home">
+        <span class="finora-logo__mark">FINORA</span>
+        <span class="finora-logo__line"></span>
+        <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link active">Home</a></li>
+          <li><a href="/health-assessment.html" class="nav-link">Financial Health</a></li>
+          <li><a href="/goals.html" class="nav-link">Goals</a></li>
+          <li><a href="/risk-assessment.html" class="nav-link">Risk Profile</a></li>
+          <li><a href="/investment-planning.html" class="nav-link">Investments</a></li>
+          <li><a href="/retirement-planner.html" class="nav-link">Retirement</a></li>
+          <li><a href="/calculators.html" class="nav-link">Calculators</a></li>
+          <li><a href="/services.html" class="nav-link">Services</a></li>
+          <li><a href="/insights.html" class="nav-link">Insights</a></li>
+          <li><a href="/about.html" class="nav-link">About</a></li>
+          <li><a href="/contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Action Buttons -->
+      <div class="header-actions">
+        <a href="/contact.html" class="btn btn--outline-nav">
+          Book Advisory
+        </a>
+        <a href="/health-assessment.html" class="btn btn--primary-nav">
+          Start Assessment
+        </a>
+        
+        <!-- Mobile Menu Toggle Button -->
+        <button type="button" class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer Overlay -->
+  <div id="mobile-nav-drawer" class="mobile-nav-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation" hidden>
+    <div class="mobile-nav-content">
+      <div class="mobile-nav-header">
+        <div class="finora-logo finora-logo--charcoal">
+          <span class="finora-logo__mark">FINORA</span>
+          <span class="finora-logo__line"></span>
+          <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+        </div>
+        <button type="button" class="close-mobile-nav" id="close-mobile-nav-btn" aria-label="Close navigation menu">&times;</button>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="/" class="mobile-nav-link">Home</a></li>
+        <li><a href="/health-assessment.html" class="mobile-nav-link">Financial Health</a></li>
+        <li><a href="/goals.html" class="mobile-nav-link">Goals</a></li>
+        <li><a href="/risk-assessment.html" class="mobile-nav-link">Risk Profile</a></li>
+        <li><a href="/investment-planning.html" class="mobile-nav-link">Investments</a></li>
+        <li><a href="/retirement-planner.html" class="mobile-nav-link">Retirement</a></li>
+        <li><a href="/calculators.html" class="mobile-nav-link">Calculators</a></li>
+        <li><a href="/services.html" class="mobile-nav-link">Services</a></li>
+        <li><a href="/insights.html" class="mobile-nav-link">Insights</a></li>
+        <li><a href="/about.html" class="mobile-nav-link">About</a></li>
+        <li><a href="/contact.html" class="mobile-nav-link">Contact</a></li>
+      </ul>
+      <div class="mobile-nav-actions">
+        <a href="/contact.html" class="btn btn--secondary btn--full">Book Advisory</a>
+        <a href="/health-assessment.html" class="btn btn--primary btn--full">Start Assessment</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section" aria-label="Hero Introduction">
+      <div class="hero-bg-container">
+        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&h=900&fit=crop" alt="Modern office with city skyline representing financial confidence" class="hero-bg-image">
+        <div class="hero-overlay"></div>
+      </div>
+
+      <div class="container hero-content">
+        <span class="section-label section-label--gold">YOUR FINANCIAL FUTURE</span>
+        <h1 class="hero-title">Clarity Today.<br>Confidence for Tomorrow.</h1>
+        <p class="hero-subtitle">
+          Understand your finances, define your goals and build a clearer path toward your financial future with independent, family-office caliber guidance.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="/health-assessment.html" class="btn btn--hero-primary">
+            Start Your Financial Assessment
+          </a>
+          <a href="#services" class="btn btn--hero-secondary">
+            Explore Our Services
+          </a>
+        </div>
+
+        <!-- Hero Key Principles Bar -->
+        <div class="hero-badges">
+          <div class="hero-badge-item">
+            <span class="hero-badge-dot"></span>
+            <span class="hero-badge-text">Fiduciary Standard</span>
+          </div>
+          <div class="hero-badge-item">
+            <span class="hero-badge-dot"></span>
+            <span class="hero-badge-text">Independent & Unbiased</span>
+          </div>
+          <div class="hero-badge-item">
+            <span class="hero-badge-dot"></span>
+            <span class="hero-badge-text">Confidential & Private</span>
+          </div>
+          <div class="hero-badge-item">
+            <span class="hero-badge-dot"></span>
+            <span class="hero-badge-text">Comprehensive Planning</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Platform Stats (from /api/stats) -->
+    <section class="stats-strip" aria-label="FINORA community in numbers">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-item__value" data-stat="members">0</div>
+            <div class="stat-item__label">Members</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__value" data-stat="goals_created">0</div>
+            <div class="stat-item__label">Goals Created</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__value" data-stat="assessments_completed">0</div>
+            <div class="stat-item__label">Risk Assessments Completed</div>
+          </div>
+        </div>
+        <p class="stats-note" id="stats-note">Live figures from the FINORA platform.</p>
+      </div>
+    </section>
+
+    <!-- Short Financial Health Assessment CTA Banner -->
+    <section class="assessment-cta-strip" aria-label="Financial Health Assessment Quick Action">
+      <div class="container">
+        <div class="cta-strip-card">
+          <div class="cta-strip-left">
+            <span class="section-label">CONFIDENTIAL DIAGNOSTIC</span>
+            <h3 class="cta-strip-title">Discover Your Personal Financial Health Score</h3>
+            <p class="cta-strip-desc">
+              Complete our guided assessment to evaluate your cash flow, emergency buffers, debt structure, and retirement readiness.
+            </p>
+          </div>
+          <div class="cta-strip-right">
+            <a href="/health-assessment.html" class="btn btn--gold">
+              Start Guided Assessment →
+            </a>
+            <span class="cta-strip-meta">5-Minute Diagnostic • 100% Confidential</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Your Financial Journey Section -->
+    <section id="journey" class="journey-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-label">YOUR GOALS</span>
+          <h2 class="section-heading">A Disciplined Path to Enduring Wealth</h2>
+          <p class="section-description">
+            Prudent wealth planning is not a one-time transaction. We guide individuals and families across four deliberate stages to ensure ongoing stability.
+          </p>
+        </div>
+
+        <div class="journey-grid">
+          
+          <!-- Card 1 -->
+          <article class="journey-card">
+            <div class="journey-card__header">
+              <span class="journey-card__num">01</span>
+              <div class="journey-icon-wrap" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                  <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  <circle cx="12" cy="12" r="10"></circle>
+                </svg>
+              </div>
+            </div>
+            <h3 class="journey-card__title">Understand</h3>
+            <p class="journey-card__text">
+              Review your current financial position. We catalog all liquid reserves, properties, investment accounts, and liabilities to form an accurate, transparent baseline.
+            </p>
+            <div class="journey-card__footer">
+              <span class="journey-card__tag">Baseline & Audit</span>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="journey-card">
+            <div class="journey-card__header">
+              <span class="journey-card__num">02</span>
+              <div class="journey-icon-wrap" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <circle cx="12" cy="12" r="6"></circle>
+                  <circle cx="12" cy="12" r="2"></circle>
+                </svg>
+              </div>
+            </div>
+            <h3 class="journey-card__title">Plan</h3>
+            <p class="journey-card__text">
+              Define your short, medium and long-term goals. From family education and legacy protection to retirement timelines, we structure measurable milestones.
+            </p>
+            <div class="journey-card__footer">
+              <span class="journey-card__tag">Strategic Roadmap</span>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="journey-card">
+            <div class="journey-card__header">
+              <span class="journey-card__num">03</span>
+              <div class="journey-icon-wrap" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                  <path d="M3 3v18h18"></path>
+                  <path d="m19 9-5 5-4-4-3 3"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="journey-card__title">Explore</h3>
+            <p class="journey-card__text">
+              Understand investment, savings and retirement scenarios. Simulate how varying conditions and life decisions influence your net capital over decades.
+            </p>
+            <div class="journey-card__footer">
+              <span class="journey-card__tag">Scenario Modeling</span>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="journey-card">
+            <div class="journey-card__header">
+              <span class="journey-card__num">04</span>
+              <div class="journey-icon-wrap" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                  <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.19"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="journey-card__title">Review</h3>
+            <p class="journey-card__text">
+              Track your progress and adjust your financial plan. As careers evolve, families grow, and tax laws change, your advisory strategy adapts continuously.
+            </p>
+            <div class="journey-card__footer">
+              <span class="journey-card__tag">Ongoing Stewardship</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-label">WEALTH PLANNING</span>
+          <h2 class="section-heading">Comprehensive Financial Services</h2>
+          <p class="section-description">
+            Objective guidance structured strictly for your best interests. Each engagement is designed to bring enduring order and peace of mind to your financial life.
+          </p>
+        </div>
+
+        <div class="services-grid">
+
+          <!-- Service 1 -->
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+              </svg>
+            </div>
+            <h3 class="service-card__title">Financial Health Assessment</h3>
+            <p class="service-card__text">
+              A comprehensive diagnostics audit reviewing your cash flow ratios, liquidity reserves, debt structure, and baseline resilience.
+            </p>
+            <a href="/health-assessment.html" class="service-card__link">Learn More</a>
+          </article>
+
+          <!-- Service 2 -->
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <h3 class="service-card__title">Investment Planning</h3>
+            <p class="service-card__text">
+              Strategic asset allocation frameworks designed around diversification, tax efficiency, and long-term capital preservation.
+            </p>
+            <a href="/investment-planning.html" class="service-card__link">Learn More</a>
+          </article>
+
+          <!-- Service 3 -->
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3 class="service-card__title">Retirement Planning</h3>
+            <p class="service-card__text">
+              Mathematical modeling of lifetime spending, safe withdrawal horizons, pension coordination, and healthcare reserves.
+            </p>
+            <a href="/retirement-planner.html" class="service-card__link">Learn More</a>
+          </article>
+
+          <!-- Service 4 -->
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+            </div>
+            <h3 class="service-card__title">Savings & Goal Planning</h3>
+            <p class="service-card__text">
+              Targeted frameworks for home acquisitions, sabbatical funds, business ventures, and personal family wealth milestones.
+            </p>
+            <a href="/goals.html" class="service-card__link">Learn More</a>
+          </article>
+
+          <!-- Service 5 -->
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3 class="service-card__title">Risk Profile Assessment</h3>
+            <p class="service-card__text">
+              Multi-dimensional analysis separating your psychological risk tolerance from your factual financial capacity and liquidity needs.
+            </p>
+            <a href="/risk-assessment.html" class="service-card__link">Learn More</a>
+          </article>
+
+          <!-- Service 6 -->
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+            </div>
+            <h3 class="service-card__title">Education Planning</h3>
+            <p class="service-card__text">
+              Structuring tax-advantaged college savings vehicles and trusts to protect educational opportunities for children.
+            </p>
+            <a href="/goals.html" class="service-card__link">Learn More</a>
+          </article>
+
+          <!-- Service 7 -->
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <h3 class="service-card__title">Wealth Planning</h3>
+            <p class="service-card__text">
+              Holistic family-office architecture coordinating estate structures, generational gift planning, and philanthropy alignment.
+            </p>
+            <a href="/services.html" class="service-card__link">Learn More</a>
+          </article>
+
+          <!-- Service 8 -->
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+                <line x1="8" y1="6" x2="16" y2="6"></line>
+                <line x1="16" y1="14" x2="16" y2="18"></line>
+                <path d="M16 10h.01"></path>
+                <path d="M12 10h.01"></path>
+                <path d="M8 10h.01"></path>
+                <path d="M12 14h.01"></path>
+                <path d="M8 14h.01"></path>
+                <path d="M12 18h.01"></path>
+                <path d="M8 18h.01"></path>
+              </svg>
+            </div>
+            <h3 class="service-card__title">Financial Calculators</h3>
+            <p class="service-card__text">
+              Intuitive, interactive financial forecasting tools providing rapid, transparent estimations for net worth and retirement readiness.
+            </p>
+            <a href="/calculators.html" class="service-card__link">Learn More</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Financial Health Preview Section -->
+    <section id="health-preview" class="health-preview-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-label">FINANCIAL HEALTH</span>
+          <h2 class="section-heading">Your Financial Position at a Glance</h2>
+          <p class="section-description">
+            A calm, transparent overview designed to eliminate confusion. Below is a sample financial health dashboard.
+          </p>
+        </div>
+
+        <div class="health-preview-layout">
+          <div class="health-preview-dashboard">
+          <div class="health-metric-grid">
+            <div class="health-metric">
+              <span class="health-metric__label">Financial Health Score</span>
+              <div class="health-metric__value">84</div>
+              <span class="health-status positive">
+                <span class="status-dot"></span>
+                Strong & Resilient
+              </span>
+            </div>
+
+            <div class="health-metric">
+              <span class="health-metric__label">Monthly Income</span>
+              <div class="health-metric__value">AED 18,500</div>
+              <span class="health-unit">/month</span>
+            </div>
+
+            <div class="health-metric">
+              <span class="health-metric__label">Monthly Expenses</span>
+              <div class="health-metric__value">AED 9,200</div>
+              <span class="health-unit">/month</span>
+            </div>
+
+            <div class="health-metric">
+              <span class="health-metric__label">Savings Rate</span>
+              <div class="health-metric__value">50.3%</div>
+              <span class="health-status positive">
+                <span class="status-dot"></span>
+                Target: 30%+
+              </span>
+            </div>
+
+            <div class="health-metric">
+              <span class="health-metric__label">Emergency Fund</span>
+              <div class="health-metric__value">AED 78,200</div>
+              <span class="health-unit">8.5 months coverage</span>
+            </div>
+
+            <div class="health-metric">
+              <span class="health-metric__label">Net Worth</span>
+              <div class="health-metric__value">AED 1.11M</div>
+              <span class="health-unit">Assets: AED 1.42M</span>
+            </div>
+
+            <div class="health-metric">
+              <span class="health-metric__label">Total Liabilities</span>
+              <div class="health-metric__value">AED 310k</div>
+              <span class="health-status positive">
+                <span class="status-dot"></span>
+                Low Risk
+              </span>
+            </div>
+
+            <div class="health-metric">
+              <span class="health-metric__label">Debt-to-Income</span>
+              <div class="health-metric__value">1.67%</div>
+              <span class="health-unit">Excellent ratio</span>
+            </div>
+          </div>
+
+          <div class="dashboard-footer">
+            <p class="dashboard-note">This is a sample dashboard. Your actual financial health assessment will include detailed analysis and personalized recommendations.</p>
+            <a href="/health-assessment.html" class="btn btn--primary">Start Your Assessment</a>
+          </div>
+          </div>
+
+          <div class="health-preview-image">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=500&fit=crop" alt="Professional financial planning workspace with charts and analytics" class="preview-image">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust & Philosophy Section with Image -->
+    <section id="trust" class="trust-section">
+      <div class="trust-section-bg" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=800&fit=crop" alt="" class="trust-bg-image">
+        <div class="trust-bg-overlay"></div>
+      </div>
+      <div class="container trust-content-wrapper">
+        <div class="section-header text-center">
+          <span class="section-label">THE FINORA STANDARD</span>
+          <h2 class="section-heading">Advice Built Around You</h2>
+          <p class="section-description">
+            We founded FINORA on the bedrock belief that genuine financial advice must be independent, transparent, and built for generations.
+          </p>
+        </div>
+
+        <div class="trust-grid">
+          
+          <div class="trust-point">
+            <div class="trust-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3 class="trust-point__title">Independent Thinking</h3>
+            <p class="trust-point__text">
+              We do not sell proprietary products or accept brokerage kickbacks. Our loyalty is solely to your balance sheet.
+            </p>
+          </div>
+
+          <div class="trust-point">
+            <div class="trust-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3 class="trust-point__title">Clear Financial Planning</h3>
+            <p class="trust-point__text">
+              We eliminate convoluted jargon and deliver clean, structured roadmaps that empower confident decision-making.
+            </p>
+          </div>
+
+          <div class="trust-point">
+            <div class="trust-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M18 20V10M12 20V4M6 20v-6"></path>
+              </svg>
+            </div>
+            <h3 class="trust-point__title">Long-Term Perspective</h3>
+            <p class="trust-point__text">
+              We look past daily financial noise, focusing on durable multi-decade compounding and inter-generational stability.
+            </p>
+          </div>
+
+          <div class="trust-point">
+            <div class="trust-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <h3 class="trust-point__title">Privacy & Security</h3>
+            <p class="trust-point__text">
+              Your family's financial affairs remain strictly confidential. We employ bank-grade encryption and never monetize personal data.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Financial Disclaimer Section -->
+    <section class="disclaimer-section">
+      <div class="container">
+        <div class="disclaimer-box">
+          <p>
+            <strong>Financial Disclaimer:</strong> Financial projections, calculators and planning tools provided by this platform are for informational and educational purposes only. They do not constitute investment, tax or legal advice. Investment values and returns can rise or fall. Past performance does not guarantee future results. Always consult with qualified financial, tax and legal professionals before making financial decisions.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer id="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-content">
+        
+        <!-- Column 1: Brand -->
+        <div class="footer-col">
+          <div class="footer-logo">
+            <div class="finora-logo finora-logo--white">
+              <span class="finora-logo__mark">FINORA</span>
+              <span class="finora-logo__line"></span>
+              <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+            </div>
+          </div>
+          <p class="footer-col__tagline">Independent, transparent wealth planning for families and individuals.</p>
+        </div>
+
+        <!-- Column 2: Services -->
+        <div class="footer-col">
+          <h4 class="footer-col__title">Services</h4>
+          <ul class="footer-col__links">
+            <li><a href="/health-assessment.html" class="footer-col__link">Financial Health</a></li>
+            <li><a href="/investment-planning.html" class="footer-col__link">Investment Planning</a></li>
+            <li><a href="/retirement-planner.html" class="footer-col__link">Retirement Planning</a></li>
+            <li><a href="/goals.html" class="footer-col__link">Goal Planning</a></li>
+            <li><a href="/risk-assessment.html" class="footer-col__link">Risk Assessment</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Tools -->
+        <div class="footer-col">
+          <h4 class="footer-col__title">Financial Tools</h4>
+          <ul class="footer-col__links">
+            <li><a href="/calculators.html" class="footer-col__link">Financial Calculators</a></li>
+            <li><a href="/insights.html" class="footer-col__link">Insights & Research</a></li>
+            <li><a href="/about.html" class="footer-col__link">About FINORA</a></li>
+            <li><a href="/contact.html" class="footer-col__link">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Legal -->
+        <div class="footer-col">
+          <h4 class="footer-col__title">Legal</h4>
+          <ul class="footer-col__links">
+            <li><a href="/privacy.html" class="footer-col__link">Privacy Policy</a></li>
+            <li><a href="/terms.html" class="footer-col__link">Terms of Service</a></li>
+            <li><a href="/disclaimer.html" class="footer-col__link">Financial Disclaimer</a></li>
+            <li><a href="/disclosures.html" class="footer-col__link">Disclosures</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 5: CTA -->
+        <div class="footer-col">
+          <h4 class="footer-col__title">Get Started</h4>
+          <p class="footer-col__desc">Begin your journey to financial clarity and confidence.</p>
+          <a href="/health-assessment.html" class="btn btn--gold">Start Assessment</a>
+        </div>
+
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 FINORA Financial Advisory. All rights reserved. FINORA is a financial planning and advisory platform, not a bank, broker, or investment execution platform.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/home.js"></script>
+
+  <!-- Navigation and Interactivity Script -->
+  <script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const closeMobileNavBtn = document.getElementById('close-mobile-nav-btn');
+    const mobileNavDrawer = document.getElementById('mobile-nav-drawer');
+    const body = document.body;
+
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileNavDrawer.removeAttribute('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', 'true');
+        body.classList.add('no-scroll');
+      });
+    }
+
+    if (closeMobileNavBtn) {
+      closeMobileNavBtn.addEventListener('click', () => {
+        mobileNavDrawer.setAttribute('hidden', '');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        body.classList.remove('no-scroll');
+      });
+    }
+
+    // Close drawer when a link is clicked
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNavDrawer.setAttribute('hidden', '');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        body.classList.remove('no-scroll');
+      });
+    });
+
+    // Header scroll effect
+    const siteHeader = document.getElementById('site-header');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        siteHeader.classList.add('scrolled');
+      } else {
+        siteHeader.classList.remove('scrolled');
+      }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && document.querySelector(href)) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

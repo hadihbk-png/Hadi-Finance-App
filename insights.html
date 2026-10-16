@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Knowledge & Insights Library | FINORA Financial Advisory</title>
+  <meta name="description" content="Explore FINORA's fiduciary educational essays on risk management, compound growth, retirement readiness, and balance sheet discipline.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/src/style.css">
+  <style>
+    .insights-filter-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .topic-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .topic-pill {
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 0.45rem 1rem;
+      border-radius: 2px;
+      border: 1px solid var(--border-light);
+      background-color: #FFFFFF;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .topic-pill:hover,
+    .topic-pill.active {
+      background-color: var(--text-primary);
+      color: #FFFFFF;
+      border-color: var(--text-primary);
+    }
+
+    .insights-search-box {
+      position: relative;
+      min-width: 260px;
+    }
+
+    .insights-search-input {
+      width: 100%;
+      padding: 0.5rem 1rem 0.5rem 2.25rem;
+      font-size: 0.85rem;
+      border: 1px solid var(--border-light);
+      border-radius: 2px;
+      outline: none;
+      background-color: #FFFFFF;
+    }
+
+    .insights-search-input:focus {
+      border-color: var(--gold-primary);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-light);
+      pointer-events: none;
+    }
+
+    .edu-banner {
+      background-color: #FAF8F5;
+      border: 1px solid var(--gold-border);
+      padding: 1.25rem 1.75rem;
+      border-radius: 2px;
+      margin-bottom: 3.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .edu-banner__badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background-color: var(--gold-primary);
+      color: #FFFFFF;
+      padding: 0.25rem 0.6rem;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+
+    .edu-banner__text {
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: #555555;
+    }
+
+    /* Article Card Modifications */
+    .article-card {
+      background-color: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-radius: 2px;
+      padding: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition-normal);
+      position: relative;
+    }
+
+    .article-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-border);
+      box-shadow: var(--shadow-md);
+    }
+
+    .article-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .article-title {
+      font-family: var(--font-serif);
+      font-size: 1.65rem;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--text-primary);
+      margin-bottom: 0.6rem;
+    }
+
+    .article-subtitle {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .article-excerpt {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .article-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.78rem;
+    }
+
+    .article-read-time {
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .btn-read-article {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color var(--transition-fast);
+      font-size: 0.78rem;
+    }
+
+    .btn-read-article:hover {
+      color: var(--gold-primary);
+    }
+
+    /* Article Reading Modal */
+    .article-modal-body {
+      padding: 0 0.5rem;
+    }
+
+    .article-modal-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .article-modal-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .article-modal-subheading {
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--text-secondary);
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .article-modal-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+    }
+
+    .article-essay-content {
+      font-size: 0.96rem;
+      line-height: 1.85;
+      color: #333333;
+    }
+
+    .article-essay-content p {
+      margin-bottom: 1.4rem;
+    }
+
+    .article-essay-content h4 {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 2rem 0 0.75rem;
+    }
+
+    .article-pullquote {
+      margin: 2rem 0;
+      padding: 1.5rem 2rem;
+      border-left: 3px solid var(--gold-primary);
+      background-color: var(--bg-secondary);
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-style: italic;
+      line-height: 1.6;
+      color: var(--text-primary);
+    }
+
+    .article-takeaways-box {
+      background-color: #F8F7F4;
+      border: 1px solid var(--border-light);
+      padding: 1.5rem;
+      border-radius: 2px;
+      margin: 2rem 0;
+    }
+
+    .takeaways-title {
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .takeaways-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      font-size: 0.88rem;
+      color: var(--text-primary);
+    }
+
+    .takeaways-list li {
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .takeaways-list li::before {
+      content: '■';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      color: var(--gold-primary);
+      font-size: 0.55rem;
+    }
+
+    .article-modal-cta {
+      margin-top: 2.5rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+  </style>
+</head>
+<body class="page-interior">
+
+  <!-- Top Navigation Bar -->
+  <header id="site-header" class="site-header site-header--solid" role="banner">
+    <div class="nav-container">
+      <a href="/" class="finora-logo finora-logo--charcoal" id="brand-logo" aria-label="FINORA Home">
+        <span class="finora-logo__mark">FINORA</span>
+        <span class="finora-logo__line"></span>
+        <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/health-assessment.html" class="nav-link">Financial Health</a></li>
+          <li><a href="/goals.html" class="nav-link">Goals</a></li>
+          <li><a href="/risk-assessment.html" class="nav-link">Risk Profile</a></li>
+          <li><a href="/investment-planning.html" class="nav-link">Investments</a></li>
+          <li><a href="/retirement-planner.html" class="nav-link">Retirement</a></li>
+          <li><a href="/calculators.html" class="nav-link">Calculators</a></li>
+          <li><a href="/services.html" class="nav-link">Services</a></li>
+          <li><a href="/insights.html" class="nav-link active">Insights</a></li>
+          <li><a href="/about.html" class="nav-link">About</a></li>
+          <li><a href="/contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="/contact.html" class="btn btn--outline-nav">Book Advisory</a>
+        <a href="/health-assessment.html" class="btn btn--primary-nav">Assessment</a>
+        <button type="button" class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-nav-drawer" role="dialog" aria-modal="true" hidden>
+    <div class="mobile-nav-content">
+      <div class="mobile-nav-header">
+        <div class="finora-logo finora-logo--charcoal">
+          <span class="finora-logo__mark">FINORA</span>
+          <span class="finora-logo__line"></span>
+          <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+        </div>
+        <button type="button" class="close-mobile-nav" id="close-mobile-nav-btn">&times;</button>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="/" class="mobile-nav-link">Home</a></li>
+        <li><a href="/health-assessment.html" class="mobile-nav-link">Financial Health</a></li>
+        <li><a href="/goals.html" class="mobile-nav-link">Goals</a></li>
+        <li><a href="/risk-assessment.html" class="mobile-nav-link">Risk Profile</a></li>
+        <li><a href="/investment-planning.html" class="mobile-nav-link">Investments</a></li>
+        <li><a href="/retirement-planner.html" class="mobile-nav-link">Retirement</a></li>
+        <li><a href="/calculators.html" class="mobile-nav-link">Calculators</a></li>
+        <li><a href="/services.html" class="mobile-nav-link">Services</a></li>
+        <li><a href="/insights.html" class="mobile-nav-link">Insights</a></li>
+        <li><a href="/about.html" class="mobile-nav-link">About</a></li>
+        <li><a href="/contact.html" class="mobile-nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main id="main-content" class="interior-main">
+    
+    <!-- Hero / Title -->
+    <section class="page-hero page-hero--with-image">
+      <div class="page-hero-bg" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&h=600&fit=crop" alt="" class="page-hero-image">
+        <div class="page-hero-overlay"></div>
+      </div>
+      <div class="container text-center page-hero-content">
+        <span class="section-label">FINANCIAL EDUCATION & RESEARCH</span>
+        <h1 class="page-title">Knowledge & Insights Library</h1>
+        <p class="page-subtitle">
+          Unhurried, fiduciary essays designed to illuminate foundational financial principles. Understand risk, master compounding mechanics, and structure lifelong capital resilience.
+        </p>
+      </div>
+    </section>
+
+    <!-- Library Section -->
+    <section class="insights-section" style="padding: 2rem 0 6rem;">
+      <div class="container">
+        
+        <!-- Mandatory Educational Label Banner -->
+        <div class="edu-banner">
+          <span class="edu-banner__badge">Educational Content</span>
+          <p class="edu-banner__text">
+            All essays in this library are published exclusively for educational and informational purposes. They do not constitute personalized investment advice, trading instructions, or performance warranties. FINORA does not sell individual securities or endorse speculative instruments.
+          </p>
+        </div>
+
+        <!-- Filter & Search Bar -->
+        <div class="insights-filter-bar">
+          <div class="topic-pills" id="topic-pills">
+            <button type="button" class="topic-pill active" data-filter="all">All Topics</button>
+          </div>
+
+          <div class="insights-search-box">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="insights-search" class="insights-search-input" placeholder="Search essays and concepts...">
+          </div>
+        </div>
+
+        <!-- Articles Grid (from /api/insights) -->
+        <div class="insights-grid" id="articles-grid" aria-busy="true"></div>
+
+      </div>
+    </section>
+
+    <!-- Fiduciary Disclaimer -->
+    <section class="disclaimer-section">
+      <div class="container">
+        <div class="disclaimer-box">
+          <div class="disclaimer-header">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8975A" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <span class="disclaimer-title">Educational Content Disclaimer</span>
+          </div>
+          <p class="disclaimer-body">
+            All essays and analyses provided herein are for educational and planning purposes only. They do not constitute tailored financial, legal, tax, or investment advice, nor do they guarantee future returns. Prior to implementing any strategy, consult with a qualified fiduciary advisor.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Charcoal Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-col footer-col--brand">
+          <a href="/" class="finora-logo finora-logo--white">
+            <span class="finora-logo__mark">FINORA</span>
+            <span class="finora-logo__line"></span>
+            <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+          </a>
+          <p class="footer-brand-text">
+            Independent, fee-only wealth planning committed to clarity, fiduciary stewardship, and generational capital preservation.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Public Tools</h4>
+          <ul class="footer-links">
+            <li><a href="/health-assessment.html">Financial Health Assessment</a></li>
+            <li><a href="/goals.html">Financial Goals Dashboard</a></li>
+            <li><a href="/risk-assessment.html">Risk Profile Assessment</a></li>
+            <li><a href="/investment-planning.html">Investment Planning</a></li>
+            <li><a href="/retirement-planner.html">Retirement Planner</a></li>
+            <li><a href="/calculators.html">Calculators Hub</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">The Firm</h4>
+          <ul class="footer-links">
+            <li><a href="/about.html">About FINORA</a></li>
+            <li><a href="/services.html">Advisory Practices</a></li>
+            <li><a href="/insights.html">Insights & Articles</a></li>
+            <li><a href="/contact.html">Book Consultation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Offices</h4>
+          <ul class="footer-office-list">
+            <li>New York • Park Avenue</li>
+            <li>London • Mayfair</li>
+            <li>Geneva • Rue du Rhône</li>
+            <li>Dubai • DIFC Gate</li>
+            <li>Singapore • Marina Bay</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom-row">
+        <p class="footer-copyright">© FINORA Financial Advisory. All rights reserved.</p>
+        <p class="disclaimer-body" style="font-size:0.75rem; color:#888;">
+          Results are estimates based on the assumptions entered and are provided for informational purposes only. Actual outcomes may differ. FINORA is a financial planning and advisory platform, not a bank, broker, or trading venue.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/insights.js"></script>
+</body>
+</html>

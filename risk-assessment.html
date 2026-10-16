@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Risk Profile Assessment | FINORA Financial Advisory</title>
+  <meta name="description" content="Discover your true emotional risk tolerance and quantitative financial capacity for loss across market cycles.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body class="page-interior" data-auth="required">
+
+  <!-- Top Navigation Bar -->
+  <header id="site-header" class="site-header site-header--solid" role="banner">
+    <div class="nav-container">
+      <a href="/" class="finora-logo finora-logo--charcoal" id="brand-logo" aria-label="FINORA Home">
+        <span class="finora-logo__mark">FINORA</span>
+        <span class="finora-logo__line"></span>
+        <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/health-assessment.html" class="nav-link">Financial Health</a></li>
+          <li><a href="/goals.html" class="nav-link">Goals</a></li>
+          <li><a href="/risk-assessment.html" class="nav-link active">Risk Profile</a></li>
+          <li><a href="/investment-planning.html" class="nav-link">Investments</a></li>
+          <li><a href="/retirement-planner.html" class="nav-link">Retirement</a></li>
+          <li><a href="/calculators.html" class="nav-link">Calculators</a></li>
+          <li><a href="/services.html" class="nav-link">Services</a></li>
+          <li><a href="/insights.html" class="nav-link">Insights</a></li>
+          <li><a href="/about.html" class="nav-link">About</a></li>
+          <li><a href="/contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="/contact.html" class="btn btn--outline-nav">Book Advisory</a>
+        <a href="/health-assessment.html" class="btn btn--primary-nav">Assessment</a>
+        <button type="button" class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-nav-drawer" role="dialog" aria-modal="true" hidden>
+    <div class="mobile-nav-content">
+      <div class="mobile-nav-header">
+        <div class="finora-logo finora-logo--charcoal">
+          <span class="finora-logo__mark">FINORA</span>
+          <span class="finora-logo__line"></span>
+          <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+        </div>
+        <button type="button" class="close-mobile-nav" id="close-mobile-nav-btn">&times;</button>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="/" class="mobile-nav-link">Home</a></li>
+        <li><a href="/health-assessment.html" class="mobile-nav-link">Financial Health</a></li>
+        <li><a href="/goals.html" class="mobile-nav-link">Goals</a></li>
+        <li><a href="/risk-assessment.html" class="mobile-nav-link">Risk Profile</a></li>
+        <li><a href="/investment-planning.html" class="mobile-nav-link">Investments</a></li>
+        <li><a href="/retirement-planner.html" class="mobile-nav-link">Retirement</a></li>
+        <li><a href="/calculators.html" class="mobile-nav-link">Calculators</a></li>
+        <li><a href="/services.html" class="mobile-nav-link">Services</a></li>
+        <li><a href="/insights.html" class="mobile-nav-link">Insights</a></li>
+        <li><a href="/about.html" class="mobile-nav-link">About</a></li>
+        <li><a href="/contact.html" class="mobile-nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main id="main-content" class="interior-main">
+    
+    <section class="page-hero page-hero--with-image">
+      <div class="page-hero-bg" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=1600&h=600&fit=crop" alt="" class="page-hero-image">
+        <div class="page-hero-overlay"></div>
+      </div>
+      <div class="container text-center page-hero-content">
+        <span class="section-label">BEHAVIORAL & QUANTITATIVE AUDIT</span>
+        <h1 class="page-title">Risk Profile Assessment</h1>
+        <p class="page-subtitle">
+          We separate subjective emotional loss tolerance from your objective financial capacity for loss to establish an enduring asset allocation model.
+        </p>
+      </div>
+    </section>
+
+    <section class="risk-assessment-section">
+      <div class="container">
+
+        <!-- Questionnaire: one question at a time (questions from /api/risk) -->
+        <div class="risk-questionnaire-card" id="risk-questionnaire-container">
+          <div class="quiz-progress">
+            <span class="quiz-progress__label" id="quiz-step-label">Loading questions…</span>
+            <div class="progress-bar-track"><div class="progress-bar-fill progress-bar-fill--gold" id="quiz-progress-fill" style="width:0%"></div></div>
+          </div>
+          <form id="risk-profile-form" novalidate>
+            <div id="question-slot" aria-live="polite"></div>
+            <div class="quiz-nav">
+              <button type="button" class="btn btn--secondary" id="btn-prev-question">← Back</button>
+              <button type="button" class="btn btn--primary" id="btn-next-question" disabled>Next Question →</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Result -->
+        <div id="risk-results-card" class="risk-results-card" hidden>
+          <div class="text-center mb-4">
+            <span class="section-label">YOUR RISK PROFILE</span>
+            <h2 class="risk-profile-heading" id="res-profile-name">Balanced Investor</h2>
+            <div class="risk-score-pill">
+              <span>Risk score:</span>
+              <strong id="res-score-number">0 / 100</strong>
+            </div>
+          </div>
+
+          <div class="risk-explanation-box">
+            <h4 class="box-title">What this means</h4>
+            <p id="res-profile-explanation" class="box-text"></p>
+          </div>
+
+          <div class="allocation-model-card">
+            <h4 class="box-title" id="res-portfolio-name">Matching Model Portfolio</h4>
+            <p class="box-text" id="res-portfolio-desc" style="margin-bottom:1rem;"></p>
+            <div class="alloc-bars-grid" id="res-alloc-bars"></div>
+          </div>
+
+          <div class="calc-disclaimer-card mt-4">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B8975A" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <span>Model portfolios show a high-level mix of asset classes for educational purposes only. FINORA does not recommend or sell specific securities, funds or products. Actual returns will vary.</span>
+          </div>
+
+          <div class="text-center mt-5">
+            <button type="button" class="btn btn--secondary" id="btn-retake-risk">Retake Questionnaire</button>
+            <a href="/investment-planning.html" class="btn btn--primary ml-2">See My Portfolio →</a>
+          </div>
+        </div>
+
+        <!-- History -->
+        <div class="risk-history app-card" id="risk-history"></div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Charcoal Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-col footer-col--brand">
+          <a href="/" class="finora-logo finora-logo--white">
+            <span class="finora-logo__mark">FINORA</span>
+            <span class="finora-logo__line"></span>
+            <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+          </a>
+          <p class="footer-brand-text">
+            Independent, fee-only wealth planning committed to clarity, fiduciary stewardship, and generational capital preservation.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Public Tools</h4>
+          <ul class="footer-links">
+            <li><a href="/health-assessment.html">Financial Health Assessment</a></li>
+            <li><a href="/goals.html">Financial Goals Dashboard</a></li>
+            <li><a href="/risk-assessment.html">Risk Profile Assessment</a></li>
+            <li><a href="/investment-planning.html">Investment Planning</a></li>
+            <li><a href="/retirement-planner.html">Retirement Planner</a></li>
+            <li><a href="/calculators.html">Calculators Hub</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">The Firm</h4>
+          <ul class="footer-links">
+            <li><a href="/about.html">About FINORA</a></li>
+            <li><a href="/services.html">Advisory Practices</a></li>
+            <li><a href="/insights.html">Insights & Articles</a></li>
+            <li><a href="/contact.html">Book Consultation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Offices</h4>
+          <ul class="footer-office-list">
+            <li>New York • Park Avenue</li>
+            <li>London • Mayfair</li>
+            <li>Geneva • Rue du Rhône</li>
+            <li>Dubai • DIFC Gate</li>
+            <li>Singapore • Marina Bay</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom-row">
+        <p class="footer-copyright">© FINORA Financial Advisory. All rights reserved.</p>
+        <p class="disclaimer-body" style="font-size:0.75rem; color:#888;">
+          Results are estimates based on the assumptions entered and are provided for informational purposes only. Actual outcomes may differ. FINORA is a financial planning and advisory platform, not a bank, broker, or trading venue.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/risk-assessment.js"></script>
+</body>
+</html>

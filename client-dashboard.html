@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Dashboard | FINORA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #FAF8F5;
+      color: #1A1A1A;
+    }
+
+    .client-header {
+      background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%);
+      color: #FFFFFF;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .client-header .branding {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .client-header .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .client-header .user-menu {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .client-header .logout-btn {
+      background: #B8975A;
+      color: #FFFFFF;
+      padding: 0.5rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .welcome-section {
+      margin-bottom: 2rem;
+    }
+
+    .welcome-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: #1A1A1A;
+    }
+
+    .welcome-subtitle {
+      font-size: 1.1rem;
+      color: #666;
+    }
+
+    .dashboard-tabs {
+      display: flex;
+      gap: 1rem;
+      border-bottom: 2px solid #E5E5E5;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .dashboard-tabs button {
+      padding: 1rem 1.5rem;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #999;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .dashboard-tabs button.active {
+      color: #B8975A;
+      border-bottom-color: #B8975A;
+    }
+
+    .dashboard-tabs button:hover {
+      color: #B8975A;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .metric-card {
+      background: #FFFFFF;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .metric-label {
+      font-size: 0.9rem;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #B8975A;
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-status {
+      font-size: 0.85rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      display: inline-block;
+      font-weight: 600;
+    }
+
+    .status-healthy {
+      background: #E6F5F0;
+      color: #2D6A4F;
+    }
+
+    .status-warning {
+      background: #FEF3E6;
+      color: #B45309;
+    }
+
+    .status-critical {
+      background: #FEE;
+      color: #B91C1C;
+    }
+
+    .goals-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .goal-item {
+      background: #FFFFFF;
+      border-radius: 12px;
+      padding: 1.5rem;
+      border-left: 4px solid #B8975A;
+    }
+
+    .goal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 1rem;
+    }
+
+    .goal-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .goal-type {
+      font-size: 0.85rem;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #E5E5E5;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #B8975A 0%, #A0855A 100%);
+      transition: width 0.3s ease;
+    }
+
+    .goal-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .goal-detail {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .goal-detail-label {
+      color: #999;
+    }
+
+    .goal-detail-value {
+      font-weight: 600;
+      color: #1A1A1A;
+    }
+
+    .plan-section {
+      background: #FFFFFF;
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .plan-section h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #1A1A1A;
+    }
+
+    .plan-item {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .plan-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .plan-priority {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      background: #B8975A;
+      color: #FFFFFF;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .plan-action {
+      font-weight: 600;
+      color: #1A1A1A;
+      margin-bottom: 0.25rem;
+    }
+
+    .plan-description {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #E5E5E5;
+      border-radius: 50%;
+      border-top-color: #B8975A;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 2rem;
+      color: #666;
+    }
+
+    .error {
+      background: #FEE;
+      color: #B91C1C;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      border-left: 4px solid #B91C1C;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #999;
+    }
+
+    .empty-state h4 {
+      margin-bottom: 0.5rem;
+      color: #666;
+    }
+
+    @media (max-width: 768px) {
+      .client-header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem;
+      }
+
+      .welcome-heading {
+        font-size: 1.8rem;
+      }
+
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="client-header">
+    <div class="branding">
+      <div class="logo">FINORA</div>
+    </div>
+    <div class="user-menu">
+      <span id="userGreeting">Welcome, Client</span>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="welcome-section">
+      <div class="welcome-heading">Financial Dashboard</div>
+      <div class="welcome-subtitle">Your complete financial picture at a glance</div>
+    </div>
+
+    <div class="dashboard-tabs">
+      <button class="tab-btn active" onclick="switchTab('overview')">📊 Overview</button>
+      <button class="tab-btn" onclick="switchTab('goals')">🎯 My Goals</button>
+      <button class="tab-btn" onclick="switchTab('finances')">💰 My Finances</button>
+      <button class="tab-btn" onclick="switchTab('retirement')">🏖️ Retirement</button>
+      <button class="tab-btn" onclick="switchTab('risk')">⚖️ Risk Profile</button>
+    </div>
+
+    <!-- OVERVIEW TAB -->
+    <div id="overview" class="tab-content active">
+      <div class="metrics-grid" id="metricsContainer">
+        <div class="loading">
+          <div class="loading-spinner"></div>
+          <span>Loading your dashboard...</span>
+        </div>
+      </div>
+
+      <div class="plan-section">
+        <h3>📋 Your Financial Plan</h3>
+        <div id="planContainer">
+          <div class="loading">
+            <div class="loading-spinner"></div>
+            <span>Loading recommendations...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GOALS TAB -->
+    <div id="goals" class="tab-content">
+      <div class="goals-list" id="goalsContainer">
+        <div class="loading">
+          <div class="loading-spinner"></div>
+          <span>Loading your goals...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINANCES TAB -->
+    <div id="finances" class="tab-content">
+      <div class="metrics-grid" id="financesContainer">
+        <div class="loading">
+          <div class="loading-spinner"></div>
+          <span>Loading financial data...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RETIREMENT TAB -->
+    <div id="retirement" class="tab-content">
+      <div class="plan-section" id="retirementContainer">
+        <div class="loading">
+          <div class="loading-spinner"></div>
+          <span>Loading retirement data...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RISK TAB -->
+    <div id="risk" class="tab-content">
+      <div class="plan-section" id="riskContainer">
+        <div class="loading">
+          <div class="loading-spinner"></div>
+          <span>Loading risk profile...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Check authentication
+    async function checkAuth() {
+      try {
+        const response = await fetch('/api/auth/session-check', {
+          method: 'POST',
+          credentials: 'include'
+        });
+        
+        const data = await response.json();
+        
+        if (!data.authenticated || data.role !== 'client') {
+          window.location.href = '/login.html';
+        }
+      } catch (error) {
+        console.error('Auth check failed:', error);
+        window.location.href = '/login.html';
+      }
+    }
+
+    async function loadDashboard() {
+      try {
+        const response = await fetch('/api/client/dashboard', {
+          credentials: 'include'
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to load dashboard');
+        }
+
+        const data = await response.json();
+        const dashboard = data.dashboard;
+
+        // Update greeting
+        document.getElementById('userGreeting').textContent = `Welcome, ${dashboard.profile.name}`;
+
+        // Render metrics
+        renderMetrics(dashboard);
+        renderPlan(dashboard.financialPlan);
+
+        // Load other sections
+        await loadGoals();
+        await loadFinances(dashboard.cashFlow);
+        await loadRetirement();
+        await loadRiskProfile();
+      } catch (error) {
+        console.error('Dashboard load error:', error);
+        document.getElementById('metricsContainer').innerHTML = `<div class="error">Failed to load dashboard data. Please refresh the page.</div>`;
+      }
+    }
+
+    function renderMetrics(dashboard) {
+      const metrics = [
+        {
+          label: 'Financial Health',
+          value: dashboard.financialHealth.score ? `${dashboard.financialHealth.score}/100` : 'Pending',
+          status: dashboard.financialHealth.status
+        },
+        {
+          label: 'Net Worth',
+          value: formatCurrency(dashboard.netWorth.netWorth),
+          status: dashboard.netWorth.status
+        },
+        {
+          label: 'Monthly Savings',
+          value: formatCurrency(dashboard.cashFlow.monthlySavings),
+          status: dashboard.cashFlow.savingsRate > 15 ? 'Healthy' : 'Needs Attention'
+        },
+        {
+          label: 'Retirement Readiness',
+          value: dashboard.retirementReadiness?.status || 'Pending',
+          status: dashboard.retirementReadiness?.status || 'Pending'
+        }
+      ];
+
+      const html = metrics.map(m => `
+        <div class="metric-card">
+          <div class="metric-label">${m.label}</div>
+          <div class="metric-value">${m.value}</div>
+          <div class="metric-status status-${m.status?.toLowerCase().replace(' ', '-')}">
+            ${m.status}
+          </div>
+        </div>
+      `).join('');
+
+      document.getElementById('metricsContainer').innerHTML = html;
+    }
+
+    function renderPlan(plan) {
+      if (!plan || plan.length === 0) {
+        document.getElementById('planContainer').innerHTML = `
+          <div class="empty-state">
+            <h4>Complete an assessment to see personalized recommendations</h4>
+          </div>
+        `;
+        return;
+      }
+
+      const html = plan.map((item, idx) => `
+        <div class="plan-item">
+          <div class="plan-priority">Priority ${item.priority}</div>
+          <div class="plan-action">${item.action}</div>
+          <div class="plan-description">${item.description}</div>
+        </div>
+      `).join('');
+
+      document.getElementById('planContainer').innerHTML = html;
+    }
+
+    async function loadGoals() {
+      try {
+        const response = await fetch('/api/client/goals', {
+          credentials: 'include'
+        });
+
+        const data = await response.json();
+        const goals = data.goals || [];
+
+        if (goals.length === 0) {
+          document.getElementById('goalsContainer').innerHTML = `
+            <div class="empty-state">
+              <h4>No goals yet</h4>
+              <p>Create your first goal to start tracking progress</p>
+            </div>
+          `;
+          return;
+        }
+
+        const html = goals.map(g => `
+          <div class="goal-item">
+            <div class="goal-header">
+              <div>
+                <div class="goal-name">${g.name}</div>
+                <div class="goal-type">${g.type}</div>
+              </div>
+              <div class="metric-status status-${g.status?.toLowerCase()}">${g.status}</div>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: ${g.progress}%"></div>
+            </div>
+            <div class="goal-details">
+              <div class="goal-detail">
+                <span class="goal-detail-label">Progress</span>
+                <span class="goal-detail-value">${Math.round(g.progress)}%</span>
+              </div>
+              <div class="goal-detail">
+                <span class="goal-detail-label">Current</span>
+                <span class="goal-detail-value">${formatCurrency(g.current)}</span>
+              </div>
+              <div class="goal-detail">
+                <span class="goal-detail-label">Target</span>
+                <span class="goal-detail-value">${formatCurrency(g.target)}</span>
+              </div>
+              <div class="goal-detail">
+                <span class="goal-detail-label">Target Date</span>
+                <span class="goal-detail-value">${new Date(g.targetDate).toLocaleDateString()}</span>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        document.getElementById('goalsContainer').innerHTML = html;
+      } catch (error) {
+        console.error('Goals load error:', error);
+        document.getElementById('goalsContainer').innerHTML = `<div class="error">Failed to load goals</div>`;
+      }
+    }
+
+    async function loadFinances(cashFlow) {
+      try {
+        const metrics = [
+          { label: 'Monthly Income', value: formatCurrency(cashFlow.monthlyIncome) },
+          { label: 'Monthly Expenses', value: formatCurrency(cashFlow.monthlyExpenses) },
+          { label: 'Monthly Savings', value: formatCurrency(cashFlow.monthlySavings) },
+          { label: 'Savings Rate', value: `${cashFlow.savingsRate}%` }
+        ];
+
+        const html = metrics.map(m => `
+          <div class="metric-card">
+            <div class="metric-label">${m.label}</div>
+            <div class="metric-value" style="font-size: 1.5rem;">${m.value}</div>
+          </div>
+        `).join('');
+
+        document.getElementById('financesContainer').innerHTML = html;
+      } catch (error) {
+        console.error('Finances load error:', error);
+        document.getElementById('financesContainer').innerHTML = `<div class="error">Failed to load finances</div>`;
+      }
+    }
+
+    async function loadRetirement() {
+      try {
+        const response = await fetch('/api/client/retirement', {
+          credentials: 'include'
+        });
+
+        const data = await response.json();
+        const retirement = data.retirement;
+
+        if (!retirement) {
+          document.getElementById('retirementContainer').innerHTML = `
+            <div class="empty-state">
+              <h4>No retirement plan yet</h4>
+              <p>Complete the retirement planner tool to see projections</p>
+            </div>
+          `;
+          return;
+        }
+
+        const html = `
+          <h3>🏖️ Retirement Readiness</h3>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-label">Years to Retirement</div>
+              <div class="metric-value">${retirement.target_retirement_age - retirement.current_age}</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Projected Fund</div>
+              <div class="metric-value" style="font-size: 1.3rem;">${formatCurrency(retirement.projected_fund)}</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Required Fund</div>
+              <div class="metric-value" style="font-size: 1.3rem;">${formatCurrency(retirement.required_fund)}</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Funding Gap</div>
+              <div class="metric-value" style="font-size: 1.3rem; color: ${retirement.funding_gap > 0 ? '#B91C1C' : '#2D6A4F'}">${formatCurrency(retirement.funding_gap)}</div>
+            </div>
+          </div>
+        `;
+
+        document.getElementById('retirementContainer').innerHTML = html;
+      } catch (error) {
+        console.error('Retirement load error:', error);
+        document.getElementById('retirementContainer').innerHTML = `<div class="error">Failed to load retirement data</div>`;
+      }
+    }
+
+    async function loadRiskProfile() {
+      try {
+        const response = await fetch('/api/client/risk', {
+          credentials: 'include'
+        });
+
+        const data = await response.json();
+        const risk = data.risk;
+
+        if (!risk) {
+          document.getElementById('riskContainer').innerHTML = `
+            <div class="empty-state">
+              <h4>No risk profile yet</h4>
+              <p>Complete the risk assessment to determine your investment profile</p>
+            </div>
+          `;
+          return;
+        }
+
+        const html = `
+          <h3>⚖️ Your Risk Profile</h3>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-label">Risk Score</div>
+              <div class="metric-value">${risk.risk_score}/100</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Profile Category</div>
+              <div class="metric-value" style="font-size: 1.3rem;">${risk.risk_profile}</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Assessment Date</div>
+              <div class="metric-value" style="font-size: 0.9rem;">${new Date(risk.created_at).toLocaleDateString()}</div>
+            </div>
+          </div>
+        `;
+
+        document.getElementById('riskContainer').innerHTML = html;
+      } catch (error) {
+        console.error('Risk load error:', error);
+        document.getElementById('riskContainer').innerHTML = `<div class="error">Failed to load risk profile</div>`;
+      }
+    }
+
+    function formatCurrency(value) {
+      if (value === null || value === undefined) return 'N/A';
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 0
+      }).format(value);
+    }
+
+    function switchTab(tabName) {
+      // Hide all tabs
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+      // Show selected tab
+      document.getElementById(tabName).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    async function logout() {
+      try {
+        await fetch('/api/auth/logout', {
+          method: 'POST',
+          credentials: 'include'
+        });
+        window.location.href = '/login.html';
+      } catch (error) {
+        console.error('Logout error:', error);
+        window.location.href = '/login.html';
+      }
+    }
+
+    // Initialize
+    checkAuth();
+    loadDashboard();
+  </script>
+</body>
+</html>

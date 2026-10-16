@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Savings Goal Calculator | FINORA Financial Advisory</title>
+  <meta name="description" content="Calculate if your savings goals are on track and determine required monthly contributions.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/src/style.css">
+  
+  <style>
+    .savings-calculator-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 1024px) {
+      .savings-calculator-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .calc-column {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      padding: 2rem;
+    }
+
+    .calc-column h3 {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .field-label {
+      display: block;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .field-hint {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 0.3rem;
+    }
+
+    .custom-input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border-light);
+      border-radius: 3px;
+      font-size: 1rem;
+      font-family: var(--font-sans);
+    }
+
+    .custom-input:focus {
+      outline: none;
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 0 3px rgba(184, 151, 90, 0.1);
+    }
+
+    .results-panel {
+      background: linear-gradient(135deg, var(--gold-subtle) 0%, #FFFFFF 100%);
+      border: 1px solid var(--gold-border);
+      border-radius: 4px;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .result-row:last-child {
+      border-bottom: none;
+    }
+
+    .result-label {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .result-value {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .status-indicator {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+
+    .status-on-track {
+      background-color: #D1FAE5;
+      color: #065F46;
+    }
+
+    .status-shortfall {
+      background-color: #FEF3C7;
+      color: #92400E;
+    }
+
+    .status-critical {
+      background-color: #FEE2E2;
+      color: #7F1D1D;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 24px;
+      background-color: #E5E7EB;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold-primary), #8A6D3B);
+      transition: width 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .disclaimer {
+      background-color: var(--gold-subtle);
+      border-left: 4px solid var(--gold-primary);
+      padding: 1rem;
+      border-radius: 3px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body class="page-interior">
+
+  <header id="site-header" class="site-header site-header--solid" role="banner">
+    <div class="nav-container">
+      <a href="/" class="finora-logo finora-logo--charcoal" id="brand-logo" aria-label="FINORA Home">
+        <span class="finora-logo__mark">FINORA</span>
+        <span class="finora-logo__line"></span>
+        <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/health-assessment.html" class="nav-link">Financial Health</a></li>
+          <li><a href="/goals.html" class="nav-link">Goals</a></li>
+          <li><a href="/risk-assessment.html" class="nav-link">Risk Profile</a></li>
+          <li><a href="/investment-planning.html" class="nav-link">Investments</a></li>
+          <li><a href="/retirement-planner.html" class="nav-link">Retirement</a></li>
+          <li><a href="/calculators.html" class="nav-link active">Calculators</a></li>
+          <li><a href="/services.html" class="nav-link">Services</a></li>
+          <li><a href="/insights.html" class="nav-link">Insights</a></li>
+          <li><a href="/about.html" class="nav-link">About</a></li>
+          <li><a href="/contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="/contact.html" class="btn btn--outline-nav">Book Advisory</a>
+        <a href="/health-assessment.html" class="btn btn--primary-nav">Assessment</a>
+        <button type="button" class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div id="mobile-nav-drawer" class="mobile-nav-drawer" role="dialog" aria-modal="true" hidden>
+    <div class="mobile-nav-content">
+      <div class="mobile-nav-header">
+        <div class="finora-logo finora-logo--charcoal">
+          <span class="finora-logo__mark">FINORA</span>
+          <span class="finora-logo__line"></span>
+          <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+        </div>
+        <button type="button" class="close-mobile-nav" id="close-mobile-nav-btn">&times;</button>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="/" class="mobile-nav-link">Home</a></li>
+        <li><a href="/health-assessment.html" class="mobile-nav-link">Financial Health</a></li>
+        <li><a href="/goals.html" class="mobile-nav-link">Goals</a></li>
+        <li><a href="/risk-assessment.html" class="mobile-nav-link">Risk Profile</a></li>
+        <li><a href="/investment-planning.html" class="mobile-nav-link">Investments</a></li>
+        <li><a href="/retirement-planner.html" class="mobile-nav-link">Retirement</a></li>
+        <li><a href="/calculators.html" class="mobile-nav-link">Calculators</a></li>
+        <li><a href="/services.html" class="mobile-nav-link">Services</a></li>
+        <li><a href="/insights.html" class="mobile-nav-link">Insights</a></li>
+        <li><a href="/about.html" class="mobile-nav-link">About</a></li>
+        <li><a href="/contact.html" class="mobile-nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main id="main-content" class="interior-main">
+    
+    <section class="page-hero page-hero--with-image">
+      <div class="page-hero-bg" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&h=600&fit=crop" alt="" class="page-hero-image">
+        <div class="page-hero-overlay"></div>
+      </div>
+      <div class="container text-center page-hero-content">
+        <span class="section-label">GOAL TRACKING</span>
+        <h1 class="page-title">Savings Goal Calculator</h1>
+        <p class="page-subtitle">
+          Determine if your savings target is achievable with current contribution levels, or calculate the monthly amount needed.
+        </p>
+      </div>
+    </section>
+
+    <section style="padding: 3rem 0;">
+      <div class="container">
+        <div class="savings-calculator-grid">
+          
+          <!-- LEFT: GOAL PARAMETERS -->
+          <div class="calc-column">
+            <h3>Goal Parameters</h3>
+            
+            <div class="form-group">
+              <label for="goal-name" class="field-label">Goal Name</label>
+              <input type="text" id="goal-name" class="custom-input" value="Home Down Payment" placeholder="e.g., Home Purchase">
+              <span class="field-hint">Describe your savings goal</span>
+            </div>
+
+            <div class="form-group">
+              <label for="target-amount" class="field-label">Target Amount ($)</label>
+              <input type="number" id="target-amount" class="custom-input" value="250000" min="0" step="5000">
+              <span class="field-hint">Total amount needed</span>
+            </div>
+
+            <div class="form-group">
+              <label for="current-savings" class="field-label">Current Savings ($)</label>
+              <input type="number" id="current-savings" class="custom-input" value="75000" min="0" step="1000">
+              <span class="field-hint">Amount already saved</span>
+            </div>
+
+            <div class="form-group">
+              <label for="target-years" class="field-label">Target Timeline (Years)</label>
+              <input type="number" id="target-years" class="custom-input" value="5" min="0.5" step="0.25">
+              <span class="field-hint">How many years until you need the money?</span>
+            </div>
+
+            <div class="form-group">
+              <label for="expected-return" class="field-label">Expected Annual Return (%)</label>
+              <input type="number" id="expected-return" class="custom-input" value="2.5" min="0" step="0.1">
+              <span class="field-hint">Interest or investment returns (conservative estimate)</span>
+            </div>
+          </div>
+
+          <!-- RIGHT: RESULTS & STATUS -->
+          <div class="calc-column">
+            <h3>Savings Analysis</h3>
+            
+            <div class="results-panel">
+              <div class="result-row">
+                <span class="result-label">Funding Gap</span>
+                <span class="result-value" id="funding-gap">$175,000</span>
+              </div>
+              
+              <div class="result-row">
+                <span class="result-label">Months Until Target Date</span>
+                <span class="result-value" id="months-remaining">60</span>
+              </div>
+
+              <div class="result-row">
+                <span class="result-label">Required Monthly Contribution</span>
+                <span class="result-value" id="required-monthly">$2,917</span>
+              </div>
+
+              <div class="result-row">
+                <span class="result-label">Your Current Monthly Saving</span>
+                <span class="custom-input" style="border: 1px solid var(--border-light); padding: 0.5rem;">
+                  <input type="number" id="current-monthly" class="custom-input" value="2500" min="0" step="100" style="border: none; padding: 0;">
+                </span>
+              </div>
+
+              <div class="result-row">
+                <span class="result-label">Projected Savings at Target Date</span>
+                <span class="result-value" id="projected-total">$225,000</span>
+              </div>
+
+              <div id="status-badge" class="status-indicator status-on-track">
+                ✓ On Track (Minor Adjustment Needed)
+              </div>
+
+              <div style="margin-top: 1rem;">
+                <div class="progress-bar">
+                  <div class="progress-fill" id="progress-indicator" style="width: 90%;">90%</div>
+                </div>
+                <small style="color: var(--text-secondary);">Savings Progress Toward Goal</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="disclaimer">
+          <strong>⚠ Disclaimer:</strong> Results are estimates based on assumptions entered and provided for informational purposes only. Actual savings depends on market performance, contributions, and other economic factors. Consult a financial advisor for personalized guidance.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="site-footer" class="site-footer">
+    <div class="footer-content">
+      <div class="footer-column">
+        <a href="/" class="finora-logo finora-logo--charcoal" aria-label="FINORA Home">
+          <span class="finora-logo__mark">FINORA</span>
+          <span class="finora-logo__line"></span>
+          <span class="finora-logo__sub">FINANCIAL ADVISORY</span>
+        </a>
+        <p>Independent, fee-only wealth planning committed to clarity, fiduciary stewardship, and generational capital preservation.</p>
+      </div>
+      <div class="footer-column">
+        <h4 class="footer-heading">Public Tools</h4>
+        <ul class="footer-links">
+          <li><a href="/health-assessment.html">Financial Health Assessment</a></li>
+          <li><a href="/goals.html">Financial Goals Dashboard</a></li>
+          <li><a href="/risk-assessment.html">Risk Profile Assessment</a></li>
+          <li><a href="/investment-planning.html">Investment Planning</a></li>
+          <li><a href="/retirement-planner.html">Retirement Planner</a></li>
+          <li><a href="/calculators.html">Calculators Hub</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4 class="footer-heading">The Firm</h4>
+        <ul class="footer-links">
+          <li><a href="/about.html">About FINORA</a></li>
+          <li><a href="/services.html">Advisory Practices</a></li>
+          <li><a href="/insights.html">Insights & Articles</a></li>
+          <li><a href="/contact.html">Book Consultation</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4 class="footer-heading">Offices</h4>
+        <ul class="footer-links">
+          <li>New York • Park Avenue</li>
+          <li>London • Mayfair</li>
+          <li>Geneva • Rue du Rhône</li>
+          <li>Dubai • DIFC Gate</li>
+          <li>Singapore • Marina Bay</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <p>© FINORA Financial Advisory. All rights reserved.</p>
+      <p>Results are estimates based on assumptions and provided for informational purposes only. Actual outcomes may differ. FINORA is a financial planning and advisory platform, not a bank, broker, or trading venue.</p>
+    </div>
+  </footer>
+
+  <script>
+    const inputs = {
+      targetAmount: document.getElementById('target-amount'),
+      currentSavings: document.getElementById('current-savings'),
+      targetYears: document.getElementById('target-years'),
+      expectedReturn: document.getElementById('expected-return'),
+      currentMonthly: document.getElementById('current-monthly')
+    };
+
+    const displays = {
+      fundingGap: document.getElementById('funding-gap'),
+      monthsRemaining: document.getElementById('months-remaining'),
+      requiredMonthly: document.getElementById('required-monthly'),
+      projectedTotal: document.getElementById('projected-total'),
+      statusBadge: document.getElementById('status-badge'),
+      progressFill: document.getElementById('progress-indicator')
+    };
+
+    function formatCurrency(amount) {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      }).format(Math.max(0, amount));
+    }
+
+    function calculate() {
+      const target = Math.max(0, parseFloat(inputs.targetAmount.value) || 0);
+      const current = Math.max(0, parseFloat(inputs.currentSavings.value) || 0);
+      const years = Math.max(0.25, parseFloat(inputs.targetYears.value) || 1);
+      const returnRate = Math.max(0, parseFloat(inputs.expectedReturn.value) || 0) / 100 / 12;
+      const monthlyInput = Math.max(0, parseFloat(inputs.currentMonthly.value) || 0);
+
+      const months = Math.round(years * 12);
+      const fundingGap = Math.max(0, target - current);
+
+      // Calculate required monthly contribution using FV of annuity formula
+      const monthlyReturn = Math.pow(1 + returnRate, months);
+      const fvCurrent = current * Math.pow(1 + returnRate, months);
+      const requiredMonthly = fundingGap > 0 ? (fundingGap - (current * (monthlyReturn - 1))) / (monthlyReturn - 1) : 0;
+
+      // Project actual savings
+      const projectedValue = current * Math.pow(1 + returnRate, months) + monthlyInput * ((monthlyReturn - 1) / returnRate);
+
+      const progressPercent = Math.min(100, Math.round((projectedValue / target) * 100));
+      const isOnTrack = projectedValue >= target;
+
+      // Update displays
+      displays.fundingGap.textContent = formatCurrency(fundingGap);
+      displays.monthsRemaining.textContent = months;
+      displays.requiredMonthly.textContent = formatCurrency(Math.max(0, requiredMonthly));
+      displays.projectedTotal.textContent = formatCurrency(projectedValue);
+      displays.progressFill.style.width = progressPercent + '%';
+      displays.progressFill.textContent = progressPercent + '%';
+
+      // Status badge
+      if (isOnTrack) {
+        displays.statusBadge.textContent = '✓ Goal Achievable';
+        displays.statusBadge.className = 'status-indicator status-on-track';
+      } else if (progressPercent >= 80) {
+        displays.statusBadge.textContent = '⚠ Minor Adjustment Needed';
+        displays.statusBadge.className = 'status-indicator status-shortfall';
+      } else {
+        displays.statusBadge.textContent = '✗ Significant Gap';
+        displays.statusBadge.className = 'status-indicator status-critical';
+      }
+    }
+
+    // Attach event listeners
+    Object.values(inputs).forEach(input => {
+      input.addEventListener('input', calculate);
+    });
+
+    // Initialize
+    calculate();
+  </script>
+
+  <!-- Navigation Script -->
+  <script>
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileNav = document.getElementById('mobile-nav-drawer');
+    const closeBtn = document.getElementById('close-mobile-nav-btn');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+    mobileMenuBtn.addEventListener('click', () => mobileNav.removeAttribute('hidden'));
+    closeBtn.addEventListener('click', () => mobileNav.setAttribute('hidden', ''));
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => mobileNav.setAttribute('hidden', ''));
+    });
+
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  </script>
+
+</body>
+</html>
