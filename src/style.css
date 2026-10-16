@@ -3576,8 +3576,6 @@ input:focus, textarea:focus, select:focus {
   line-height: 1.6;
   margin-bottom: 1.5rem;
 }
-  border-radius: 2px;
-}
 
 .modal-dialog::-webkit-scrollbar-thumb:hover {
   background: var(--gold-primary);

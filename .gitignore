@@ -114,4 +114,10 @@ debug.log
 
 # Local development database (PGlite)
 db/.local-data/
-db/.local-dev.lock
+db/.test-data/
+db/*.lock
+
+# Test output
+test-results/
+playwright-report/
+tests/.e2e-state.json

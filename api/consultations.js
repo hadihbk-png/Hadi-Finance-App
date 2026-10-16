@@ -13,7 +13,7 @@ export default route({
     const user = await requireUser(req);
     const rows = await query(
       `SELECT ${COLUMNS} FROM consultation_requests c LEFT JOIN services s ON s.id = c.service_id
-       WHERE c.user_id = $1 ORDER BY c.created_at DESC LIMIT 20`,
+       WHERE c.user_id = $1 ORDER BY c.created_at DESC, c.id DESC LIMIT 20`,
       [user.id]
     );
     res.status(200).json({ consultations: rows });

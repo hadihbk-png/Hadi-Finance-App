@@ -12,7 +12,7 @@ export default route({
     const [portfolios, assessment] = await Promise.all([
       query('SELECT * FROM model_portfolios'),
       queryOne(
-        'SELECT id, score, risk_profile, created_at FROM risk_assessments WHERE user_id = $1 ORDER BY created_at DESC LIMIT 1',
+        'SELECT id, score, risk_profile, created_at FROM risk_assessments WHERE user_id = $1 ORDER BY created_at DESC, id DESC LIMIT 1',
         [user.id]
       ),
     ]);

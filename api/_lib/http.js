@@ -62,6 +62,11 @@ function sendError(res, err) {
 
 export function body(req) {
   const b = req.body;
+  // Data must arrive as JSON; plain-text or form posts (e.g. from other websites) are refused.
+  const type = String(req.headers['content-type'] || '');
+  if (b !== undefined && b !== null && b !== '' && !/^application\/json\b/i.test(type)) {
+    throw new HttpError(415, 'Please send data as JSON.');
+  }
   if (!b) return {};
   if (typeof b === 'string') {
     try { return JSON.parse(b); } catch { throw new ValidationError('Request body must be valid JSON.'); }

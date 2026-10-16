@@ -45,7 +45,9 @@ export function calculateHealthScore(profile) {
       value: `${round1(savingsRate * 100)}%`,
       points: Math.round(savingsPts),
       status: status(savingsPts),
-      explanation: savingsRate >= 0.2
+      explanation: income <= 0
+        ? 'No income was entered, so there is nothing left over to save each month yet.'
+        : savingsRate >= 0.2
         ? `You keep ${round1(savingsRate * 100)}% of your income after expenses and debt payments, at or above the 20% target.`
         : savingsRate > 0
           ? `You keep ${round1(savingsRate * 100)}% of your income each month. Aim for 20% to build wealth steadily.`
@@ -67,7 +69,9 @@ export function calculateHealthScore(profile) {
       value: `${round1(dti * 100)}%`,
       points: Math.round(dtiPts),
       status: status(dtiPts),
-      explanation: dti <= 0.15
+      explanation: income <= 0 && debtPayments > 0
+        ? 'You have debt payments but no income entered, which leaves no room to repay comfortably.'
+        : dti <= 0.15
         ? `Debt payments take ${round1(dti * 100)}% of your income, which is comfortably low.`
         : dti < 0.5
           ? `Debt payments take ${round1(dti * 100)}% of your income. Below 15% gives you more room to save.`
@@ -79,7 +83,11 @@ export function calculateHealthScore(profile) {
       value: `${round1(investRatio)}x income`,
       points: Math.round(investPts),
       status: status(investPts),
-      explanation: investRatio >= 1
+      explanation: income <= 0
+        ? (investments > 0
+          ? `You have ${Math.round(investments).toLocaleString('en-US')} AED invested. Add your income to compare it with your earnings.`
+          : 'No investments or income were entered yet.')
+        : investRatio >= 1
         ? `Your investments equal ${round1(investRatio)} times your annual income, a strong base for long-term growth.`
         : `Your investments equal ${round1(investRatio)} times your annual income. Building towards 1x puts your money to work.`,
     },

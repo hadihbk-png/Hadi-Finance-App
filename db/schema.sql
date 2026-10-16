@@ -80,18 +80,28 @@ CREATE TABLE IF NOT EXISTS model_portfolios (
 CREATE TABLE IF NOT EXISTS retirement_plans (
   id                      SERIAL PRIMARY KEY,
   user_id                 INTEGER NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE,
-  current_age             INTEGER NOT NULL CHECK (current_age BETWEEN 18 AND 80),
-  retirement_age          INTEGER NOT NULL CHECK (retirement_age BETWEEN 40 AND 85),
+  current_age             INTEGER NOT NULL,
+  retirement_age          INTEGER NOT NULL,
   current_savings         NUMERIC(14,2) NOT NULL DEFAULT 0 CHECK (current_savings >= 0),
   monthly_contribution    NUMERIC(14,2) NOT NULL DEFAULT 0 CHECK (monthly_contribution >= 0),
-  expected_return_pct     NUMERIC(5,2) NOT NULL CHECK (expected_return_pct BETWEEN 0 AND 15),
+  expected_return_pct     NUMERIC(5,2) NOT NULL,
   desired_monthly_income  NUMERIC(14,2) NOT NULL CHECK (desired_monthly_income >= 0),
   -- Planning assumptions shown on the Retirement page
   retirement_years        INTEGER NOT NULL DEFAULT 25 CHECK (retirement_years BETWEEN 5 AND 45),
   inflation_pct           NUMERIC(5,2) NOT NULL DEFAULT 2.5 CHECK (inflation_pct BETWEEN 0 AND 10),
-  updated_at              TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  CHECK (retirement_age > current_age)
+  updated_at              TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+-- Age and return limits are (re)applied here so existing databases pick up changes.
+ALTER TABLE retirement_plans DROP CONSTRAINT IF EXISTS retirement_plans_current_age_check;
+ALTER TABLE retirement_plans ADD CONSTRAINT retirement_plans_current_age_check CHECK (current_age BETWEEN 18 AND 100);
+ALTER TABLE retirement_plans DROP CONSTRAINT IF EXISTS retirement_plans_retirement_age_check;
+ALTER TABLE retirement_plans ADD CONSTRAINT retirement_plans_retirement_age_check CHECK (retirement_age BETWEEN 18 AND 100);
+ALTER TABLE retirement_plans DROP CONSTRAINT IF EXISTS retirement_plans_check;
+ALTER TABLE retirement_plans DROP CONSTRAINT IF EXISTS retirement_plans_ages_order_check;
+ALTER TABLE retirement_plans ADD CONSTRAINT retirement_plans_ages_order_check CHECK (retirement_age > current_age);
+ALTER TABLE retirement_plans DROP CONSTRAINT IF EXISTS retirement_plans_expected_return_pct_check;
+ALTER TABLE retirement_plans ADD CONSTRAINT retirement_plans_expected_return_pct_check CHECK (expected_return_pct BETWEEN 0 AND 20);
 
 CREATE TABLE IF NOT EXISTS saved_calculations (
   id               SERIAL PRIMARY KEY,

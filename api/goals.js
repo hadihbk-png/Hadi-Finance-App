@@ -18,14 +18,17 @@ const COLUMNS = `id, name, category, target_amount, current_amount, monthly_cont
 
 const withProgress = (g) => ({ ...g, progress: goalProgress(g) });
 
+// Optional amounts left blank mean zero.
+const orZero = (v) => (v === undefined || v === null || String(v).trim() === '' ? '0' : v);
+
 // An unchanged target date may already be in the past when editing an older goal.
 function validateGoal(b, existingDate = null) {
   const goal = {
     name: text(b.name, 'name', 'Goal name', { max: 120, min: 2 }),
     category: oneOf(b.category, 'category', 'Category', GOAL_CATEGORIES),
     target_amount: money(b.target_amount, 'target_amount', 'Target amount', { positive: true }),
-    current_amount: money(b.current_amount ?? 0, 'current_amount', 'Amount saved so far'),
-    monthly_contribution: money(b.monthly_contribution ?? 0, 'monthly_contribution', 'Monthly contribution'),
+    current_amount: money(orZero(b.current_amount), 'current_amount', 'Amount saved so far'),
+    monthly_contribution: money(orZero(b.monthly_contribution), 'monthly_contribution', 'Monthly contribution'),
     target_date: date(b.target_date, 'target_date', 'Target date', { required: false, future: b.target_date !== existingDate }),
     status: b.status ? oneOf(b.status, 'status', 'Status', STATUSES) : 'active',
   };
@@ -43,7 +46,7 @@ export default route({
     const user = await requireUser(req);
     const goals = await query(
       `SELECT ${COLUMNS} FROM goals WHERE user_id = $1
-       ORDER BY CASE status WHEN 'active' THEN 0 WHEN 'paused' THEN 1 ELSE 2 END, created_at DESC`,
+       ORDER BY CASE status WHEN 'active' THEN 0 WHEN 'paused' THEN 1 ELSE 2 END, created_at DESC, id DESC`,
       [user.id]
     );
     res.status(200).json({ goals: goals.map(withProgress), categories: GOAL_CATEGORIES });

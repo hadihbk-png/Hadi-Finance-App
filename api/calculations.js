@@ -36,7 +36,7 @@ export default route({
     const user = await requireUser(req);
     const rows = await query(
       `SELECT id, calculator_type, inputs, result, created_at FROM saved_calculations
-       WHERE user_id = $1 ORDER BY created_at DESC LIMIT 50`,
+       WHERE user_id = $1 ORDER BY created_at DESC, id DESC LIMIT 50`,
       [user.id]
     );
     res.status(200).json({ calculations: rows });

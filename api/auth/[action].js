@@ -1,7 +1,7 @@
 // /api/auth/signup  POST  { full_name, email, password, phone?, date_of_birth? }
 // /api/auth/login   POST  { email, password }
 // /api/auth/logout  POST
-// /api/auth/me      GET   -> { user } or { user: null }
+// /api/auth/me      GET   -> { user }, or 401 when not logged in
 
 import bcrypt from 'bcryptjs';
 import { queryOne } from '../_lib/db.js';
@@ -89,11 +89,12 @@ async function logout(req, res) {
 
 async function me(req, res) {
   const session = await getSessionUser(req);
-  if (!session) return res.status(200).json({ user: null });
-  const row = await queryOne(`SELECT ${USER_COLUMNS} FROM users WHERE id = $1`, [session.id]);
+  const row = session
+    ? await queryOne(`SELECT ${USER_COLUMNS} FROM users WHERE id = $1`, [session.id])
+    : null;
   if (!row) {
-    clearSession(res);
-    return res.status(200).json({ user: null });
+    if (session) clearSession(res); // valid token for a user that no longer exists
+    throw new HttpError(401, 'You are not logged in.', { code: 'NOT_LOGGED_IN' });
   }
   res.status(200).json({ user: publicUser(row) });
 }

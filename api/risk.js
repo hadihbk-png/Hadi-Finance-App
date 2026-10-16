@@ -18,7 +18,7 @@ export default route({
     const user = await requireUser(req);
     const [questions, history] = await Promise.all([
       loadQuestions(),
-      query(`SELECT ${HISTORY_COLUMNS} FROM risk_assessments WHERE user_id = $1 ORDER BY created_at DESC LIMIT 20`, [user.id]),
+      query(`SELECT ${HISTORY_COLUMNS} FROM risk_assessments WHERE user_id = $1 ORDER BY created_at DESC, id DESC LIMIT 20`, [user.id]),
     ]);
     res.status(200).json({
       // Points stay on the server; the page only needs the labels.

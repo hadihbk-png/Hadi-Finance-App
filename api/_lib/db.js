@@ -2,14 +2,17 @@
 //
 // - DATABASE_URL set (Vercel / Neon): uses @neondatabase/serverless over HTTPS.
 // - DATABASE_URL empty (local development only): uses PGlite, a real Postgres
-//   engine embedded in Node, storing its data in db/.local-data.
+//   engine embedded in Node, storing its data in db/.local-data
+//   (or PGLITE_DATA_DIR, which the automated tests point at db/.test-data).
 //
 // Routes only ever call query() / queryOne(), so the same code runs in both places.
 
 import { neon } from '@neondatabase/serverless';
 import path from 'node:path';
 
-export const LOCAL_DATA_DIR = path.resolve(process.cwd(), 'db', '.local-data');
+export function localDataDir() {
+  return path.resolve(process.cwd(), process.env.PGLITE_DATA_DIR || path.join('db', '.local-data'));
+}
 
 let runner = null;      // async (text, params) => rows
 let localDb = null;     // PGlite instance, when used
@@ -35,7 +38,7 @@ async function getRunner() {
   // Module name kept in a variable so deployment bundlers never pull PGlite in.
   const pgliteModule = '@electric-sql/pglite';
   const { PGlite } = await import(pgliteModule);
-  localDb = new PGlite(LOCAL_DATA_DIR);
+  localDb = new PGlite(localDataDir());
   await localDb.waitReady;
   runner = async (text, params) => (await localDb.query(text, params)).rows;
   return runner;

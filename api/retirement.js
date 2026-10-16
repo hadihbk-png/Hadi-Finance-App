@@ -22,15 +22,15 @@ export default route({
   PUT: async (req, res) => {
     const user = await requireUser(req);
     const b = body(req);
-    const current_age = integer(b.current_age, 'current_age', 'Current age', { min: 18, max: 80 });
-    const retirement_age = integer(b.retirement_age, 'retirement_age', 'Retirement age', { min: 40, max: 85 });
+    const current_age = integer(b.current_age, 'current_age', 'Current age', { min: 18, max: 100 });
+    const retirement_age = integer(b.retirement_age, 'retirement_age', 'Retirement age', { min: 18, max: 100 });
     if (retirement_age <= current_age) {
       throw new ValidationError('Retirement age must be greater than your current age.', 'retirement_age');
     }
     const p = {
       current_savings: money(b.current_savings, 'current_savings', 'Current savings'),
       monthly_contribution: money(b.monthly_contribution, 'monthly_contribution', 'Monthly contribution'),
-      expected_return_pct: decimal(b.expected_return_pct, 'expected_return_pct', 'Expected return', { min: 0, max: 15 }),
+      expected_return_pct: decimal(b.expected_return_pct, 'expected_return_pct', 'Expected return', { min: 0, max: 20 }),
       desired_monthly_income: money(b.desired_monthly_income, 'desired_monthly_income', 'Desired monthly income', { positive: true }),
       retirement_years: integer(b.retirement_years ?? 25, 'retirement_years', 'Years in retirement', { min: 5, max: 45 }),
       inflation_pct: decimal(b.inflation_pct ?? '2.5', 'inflation_pct', 'Inflation', { min: 0, max: 10 }),
